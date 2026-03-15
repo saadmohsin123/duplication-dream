@@ -147,11 +147,7 @@ const DanielPage = ({ onTabChange, onScrollTo }: DanielPageProps) => {
                     We work with school districts, sports organizations, corporations, youth leagues, and community events. Contact us to check availability and discuss your specific goals.
                   </p>
                 </div>
-                <button onClick={() => {
-                    const link = (window as any).__calendly_link;
-                    if (link) { window.open(link, '_blank'); }
-                    else { onTabChange("home"); setTimeout(() => onScrollTo("contact"), 150); }
-                  }}
+                <button onClick={() => content?.calendly_link ? window.open(content.calendly_link, '_blank') : (onTabChange("home"), setTimeout(() => onScrollTo("contact"), 150))}
                   className="bg-gold text-navy px-9 py-4 font-oswald text-[14px] tracking-[2px] uppercase font-semibold border-2 border-gold hover:bg-gold/90 transition-all cursor-pointer whitespace-nowrap">
                   Check Availability
                 </button>
