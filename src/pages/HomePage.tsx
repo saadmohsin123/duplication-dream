@@ -263,7 +263,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
 
           {/* Action photos + Stats bar */}
           <FadeUp>
-            <div className="grid grid-cols-[420px_1fr] gap-16 mt-14 max-md:grid-cols-1">
+            <div className="grid grid-cols-[420px_1fr] gap-16 mt-6 max-md:grid-cols-1">
               {/* Action photos */}
               <div className="grid grid-cols-3 gap-2">
                 <img src={danielAction1} alt="Daniel Fells NFL action" className="w-full h-[120px] object-cover" />
@@ -290,7 +290,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
 
           {/* CTA Button centered */}
           <FadeUp>
-            <div className="flex justify-center mt-14">
+            <div className="flex justify-center mt-8">
               <button
                 onClick={() => onTabChange("daniel")}
                 className="bg-red text-white px-12 py-5 font-oswald text-[14px] tracking-[3px] uppercase font-semibold border-2 border-red hover:bg-red-dark hover:border-red-dark transition-all cursor-pointer"
