@@ -147,13 +147,13 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
                   <img src={lennonImg} alt="Lennon Fells" className="w-full h-full object-cover object-top transition-transform duration-400 hover:scale-[1.04]" style={{ filter: "grayscale(10%)" }} />
                 </div>
                 <div className="p-7 flex-1 flex flex-col">
-                  <div className="font-oswald text-red text-[10px] tracking-[3px] uppercase font-medium mb-[6px]">Founder & Visionary</div>
-                  <div className="font-bebas text-[34px] text-navy tracking-[1px] leading-none mb-3">Lennon Fells</div>
+                  <div className="font-oswald text-red text-[10px] tracking-[3px] uppercase font-medium mb-[6px]">{lennon?.homepage_role_label || 'Founder & Visionary'}</div>
+                  <div className="font-bebas text-[34px] text-navy tracking-[1px] leading-none mb-3">{lennon?.name || 'Lennon Fells'}</div>
                   <p className="text-[14px] leading-[1.7] text-[#555] font-light flex-1">
-                    At 14, Lennon Fells is building a movement that connects athletic performance with food equity — proving that student-athletes can be the most powerful force for community change.
+                    {lennon?.subtitle || 'At 14, Lennon Fells is building a movement that connects athletic performance with food equity — proving that student-athletes can be the most powerful force for community change.'}
                   </p>
                   <span className="inline-flex items-center gap-2 font-oswald text-red text-[12px] tracking-[2px] uppercase font-semibold mt-5 hover:gap-[14px] transition-all">
-                    Read His Story →
+                    {lennon?.cta_text || 'Read His Story'} →
                   </span>
                 </div>
               </div>
