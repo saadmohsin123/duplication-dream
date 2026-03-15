@@ -396,7 +396,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
                   <div className="absolute top-5 -left-[18px] right-[18px] -bottom-[18px] bg-navy z-0" />
                   <div className="absolute -top-2 left-2 -right-2 bottom-2 border-[3px] border-red z-[2] pointer-events-none" />
                   <img src={danielImg} alt="Daniel Fells" className="w-full block relative z-[1]" />
-                  <div className="absolute bottom-[5.5rem] -right-[6px] bg-red text-white p-[18px_24px] z-[3] text-center">
+                  <div className="absolute bottom-[0rem] -right-[6px] bg-red text-white p-[18px_24px] z-[3] text-center">
                     <span className="font-bebas text-[44px] leading-none block">10</span>
                     <span className="font-oswald text-[10px] tracking-[2px] uppercase opacity-85 font-light">
                       NFL Seasons
