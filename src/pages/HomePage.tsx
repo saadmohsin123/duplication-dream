@@ -1,3 +1,4 @@
+import { useState } from "react";
 import FadeUp from "../components/FadeUp";
 import MissionBar from "../components/MissionBar";
 import ftfLogo from "@/assets/ftf-logo.png";
@@ -6,6 +7,8 @@ import danielImg from "@/assets/daniel-portrait.jpg";
 import danielAction1 from "@/assets/daniel-action-1.jpg";
 import danielAction2 from "@/assets/daniel-action-2.jpg";
 import danielAction3 from "@/assets/daniel-action-3.jpg";
+import { useSiteContent } from "@/hooks/useSiteContent";
+import { supabase } from "@/lib/supabase";
 
 interface HomePageProps {
   onTabChange: (tab: string) => void;
@@ -13,6 +16,30 @@ interface HomePageProps {
 }
 
 const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
+  const { content } = useSiteContent();
+
+  // Contact form state
+  const [formData, setFormData] = useState({ name: '', organization: '', email: '', phone: '', event_type: '', message: '' });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = async () => {
+    if (!formData.name || !formData.email) return;
+    setSubmitting(true);
+    await supabase.from('leads').insert([{
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+      event_type: formData.event_type,
+    }]);
+    setSubmitting(false);
+    setSubmitted(true);
+    setFormData({ name: '', organization: '', email: '', phone: '', event_type: '', message: '' });
+  };
+
+  const contactEmail = content?.contact_email || 'info@fueltheirfuture.com';
+  const phoneNumber = content?.phone_number || '';
+
   return (
     <div>
       {/* HERO */}
@@ -27,11 +54,10 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
               <span className="block w-10 h-[2px] bg-red" />
               Bay Area, CA &nbsp;|&nbsp; Serving Nationwide
             </div>
-            <h1 className="font-bebas text-white leading-[0.95] tracking-[1px] mb-7" style={{ fontSize: "clamp(52px, 7vw, 86px)" }}>
-              Every Athlete<br />Needs Fuel.<span className="text-red block">Every Kid<br />Deserves It.</span>
-            </h1>
+            <h1 className="font-bebas text-white leading-[0.95] tracking-[1px] mb-7" style={{ fontSize: "clamp(52px, 7vw, 86px)" }}
+              dangerouslySetInnerHTML={{ __html: content?.hero_title || 'Every Athlete<br />Needs Fuel.<span class="text-red block">Every Kid<br />Deserves It.</span>' }} />
             <p className="text-white/[0.72] text-[17px] leading-[1.75] font-light max-w-[500px] mb-11">
-              Fuel Their Future empowers student-athletes to lead the fight against food insecurity — connecting elite athletic performance with equitable food access for all children.
+              {content?.hero_subtitle || 'Fuel Their Future empowers student-athletes to lead the fight against food insecurity — connecting elite athletic performance with equitable food access for all children.'}
             </p>
             <div className="pt-11 border-t border-white/10 mt-11">
               <div className="font-bebas text-red leading-[0.85] tracking-[-1px]" style={{ fontSize: "clamp(72px, 10vw, 120px)" }}>1 in 5</div>
@@ -63,7 +89,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
               The FTF Framework™
             </h2>
             <p className="text-white/60 text-[17px] leading-[1.75] font-light max-w-[600px]">
-              Three pillars. One standard. Built for athletes, students, executives, and leaders at every level.
+              {content?.framework_text || 'Three pillars. One standard. Built for athletes, students, executives, and leaders at every level.'}
             </p>
           </FadeUp>
           <FadeUp>
@@ -86,14 +112,11 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
 
       {/* FOUNDER SPOTLIGHT */}
       <section className="bg-cream py-[100px] relative overflow-hidden">
-        {/* Top gradient line */}
         <div className="absolute top-0 left-0 right-0 h-1" style={{ background: "linear-gradient(to right, hsl(var(--red)), hsl(var(--gold)), hsl(var(--red)))" }} />
-        {/* Decorative circles */}
         <div className="absolute top-[60px] left-[60px] w-[120px] h-[120px] border-2 border-red/[0.12] rounded-full pointer-events-none" />
         <div className="absolute top-[40px] left-[40px] w-[160px] h-[160px] border border-red/[0.07] rounded-full pointer-events-none" />
         <div className="absolute bottom-[60px] right-[60px] w-[200px] h-[200px] border-2 border-navy/[0.08] rounded-full pointer-events-none" />
         <div className="absolute bottom-[30px] right-[30px] w-[260px] h-[260px] border border-navy/[0.05] rounded-full pointer-events-none" />
-        {/* Background FTF text */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bebas text-[300px] text-navy/[0.03] tracking-[-10px] leading-none pointer-events-none whitespace-nowrap">FTF</div>
 
         <div className="max-w-[1200px] mx-auto px-[60px] max-md:px-6">
@@ -132,7 +155,6 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
               </div>
             </div>
           </FadeUp>
-          {/* Quote below card */}
           <FadeUp>
             <div className="text-center mt-12 pt-10 border-t border-navy/10">
               <div className="inline-flex items-center gap-5">
@@ -159,7 +181,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
               Speaking Engagements
             </h2>
             <p className="text-white/[0.58] text-[17px] font-light max-w-[580px] leading-[1.75] mt-[14px]">
-              High-impact, one-time speaking engagements for schools, sports organizations, and corporations — powered by a decade of NFL experience and a mission that matters.
+              {content?.speaking_section_text || 'High-impact, one-time speaking engagements for schools, sports organizations, and corporations — powered by a decade of NFL experience and a mission that matters.'}
             </p>
           </FadeUp>
           <FadeUp>
@@ -205,9 +227,17 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
                   We work with school districts, sports organizations, corporations, and community events nationwide.
                 </p>
               </div>
-              <button onClick={() => onScrollTo("contact")} className="bg-white text-navy px-9 py-4 font-oswald text-[14px] tracking-[2px] uppercase font-semibold border-2 border-white hover:bg-red hover:border-red hover:text-white transition-all cursor-pointer whitespace-nowrap">
-                Check Availability
-              </button>
+              <div className="flex gap-3 flex-wrap">
+                {content?.calendly_link && (
+                  <button onClick={() => window.open(content.calendly_link, '_blank')}
+                    className="bg-gold text-navy px-9 py-4 font-oswald text-[14px] tracking-[2px] uppercase font-semibold border-2 border-gold hover:bg-gold/90 transition-all cursor-pointer whitespace-nowrap">
+                    Book Daniel Fells
+                  </button>
+                )}
+                <button onClick={() => onScrollTo("contact")} className="bg-white text-navy px-9 py-4 font-oswald text-[14px] tracking-[2px] uppercase font-semibold border-2 border-white hover:bg-red hover:border-red hover:text-white transition-all cursor-pointer whitespace-nowrap">
+                  Check Availability
+                </button>
+              </div>
             </div>
           </FadeUp>
         </div>
@@ -373,8 +403,9 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
             </p>
             <div className="flex flex-col gap-[14px] mt-8">
               {[
-                { icon: "✉", text: "info@fueltheirfuture.com" },
+                { icon: "✉", text: contactEmail },
                 { icon: "🌐", text: "www.fueltheirfuture.com" },
+                ...(phoneNumber ? [{ icon: "📞", text: phoneNumber }] : []),
                 { icon: "📍", text: "Bay Area, CA — Programs Available Nationwide" },
               ].map(d => (
                 <div key={d.text} className="flex items-center gap-[14px] font-oswald text-white/[0.78] text-[14px]">
@@ -385,57 +416,80 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
             </div>
           </FadeUp>
           <FadeUp>
-            <div className="flex flex-col gap-[14px]">
-              <div className="grid grid-cols-2 gap-[14px] max-md:grid-cols-1">
-                <div className="flex flex-col gap-[5px]">
-                  <label className="font-oswald text-white/45 text-[10px] tracking-[2px] uppercase">Name</label>
-                  <input placeholder="Your full name" className="bg-white/[0.07] border border-white/[0.13] text-white px-4 py-[13px] text-[15px] outline-none focus:border-red transition-colors font-serif" />
+            {submitted ? (
+              <div className="bg-white/[0.05] border border-white/10 p-10 text-center">
+                <div className="font-bebas text-white text-[32px] mb-3">Thank You!</div>
+                <p className="text-white/60 text-[15px] font-light">We'll be in touch at {contactEmail} shortly.</p>
+                <button onClick={() => setSubmitted(false)} className="mt-6 font-oswald text-red text-[12px] tracking-[2px] uppercase font-semibold bg-transparent border-none cursor-pointer hover:text-gold transition-colors">
+                  Send Another Message
+                </button>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-[14px]">
+                <div className="grid grid-cols-2 gap-[14px] max-md:grid-cols-1">
+                  <div className="flex flex-col gap-[5px]">
+                    <label className="font-oswald text-white/45 text-[10px] tracking-[2px] uppercase">Name</label>
+                    <input placeholder="Your full name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})}
+                      className="bg-white/[0.07] border border-white/[0.13] text-white px-4 py-[13px] text-[15px] outline-none focus:border-red transition-colors font-serif" />
+                  </div>
+                  <div className="flex flex-col gap-[5px]">
+                    <label className="font-oswald text-white/45 text-[10px] tracking-[2px] uppercase">Organization</label>
+                    <input placeholder="School, company, org" value={formData.organization} onChange={e => setFormData({...formData, organization: e.target.value})}
+                      className="bg-white/[0.07] border border-white/[0.13] text-white px-4 py-[13px] text-[15px] outline-none focus:border-red transition-colors font-serif" />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-[14px] max-md:grid-cols-1">
+                  <div className="flex flex-col gap-[5px]">
+                    <label className="font-oswald text-white/45 text-[10px] tracking-[2px] uppercase">Email</label>
+                    <input type="email" placeholder="your@email.com" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})}
+                      className="bg-white/[0.07] border border-white/[0.13] text-white px-4 py-[13px] text-[15px] outline-none focus:border-red transition-colors font-serif" />
+                  </div>
+                  <div className="flex flex-col gap-[5px]">
+                    <label className="font-oswald text-white/45 text-[10px] tracking-[2px] uppercase">Phone</label>
+                    <input type="tel" placeholder="(555) 000-0000" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})}
+                      className="bg-white/[0.07] border border-white/[0.13] text-white px-4 py-[13px] text-[15px] outline-none focus:border-red transition-colors font-serif" />
+                  </div>
                 </div>
                 <div className="flex flex-col gap-[5px]">
-                  <label className="font-oswald text-white/45 text-[10px] tracking-[2px] uppercase">Organization</label>
-                  <input placeholder="School, company, org" className="bg-white/[0.07] border border-white/[0.13] text-white px-4 py-[13px] text-[15px] outline-none focus:border-red transition-colors font-serif" />
+                  <label className="font-oswald text-white/45 text-[10px] tracking-[2px] uppercase">How can we help?</label>
+                  <select value={formData.event_type} onChange={e => setFormData({...formData, event_type: e.target.value})}
+                    className="bg-white/[0.07] border border-white/[0.13] text-white px-4 py-[13px] text-[15px] outline-none focus:border-red transition-colors font-serif">
+                    <option value="" className="bg-navy">Select an option</option>
+                    <option className="bg-navy">School Assembly / K–12 Event</option>
+                    <option className="bg-navy">Sports Team / Athletic Organization</option>
+                    <option className="bg-navy">Corporate Keynote / Leadership Event</option>
+                    <option className="bg-navy">Partnership Opportunity</option>
+                    <option className="bg-navy">Community Food Program</option>
+                    <option className="bg-navy">Media / Press Inquiry</option>
+                    <option className="bg-navy">Other</option>
+                  </select>
                 </div>
-              </div>
-              <div className="grid grid-cols-2 gap-[14px] max-md:grid-cols-1">
                 <div className="flex flex-col gap-[5px]">
-                  <label className="font-oswald text-white/45 text-[10px] tracking-[2px] uppercase">Email</label>
-                  <input type="email" placeholder="your@email.com" className="bg-white/[0.07] border border-white/[0.13] text-white px-4 py-[13px] text-[15px] outline-none focus:border-red transition-colors font-serif" />
+                  <label className="font-oswald text-white/45 text-[10px] tracking-[2px] uppercase">Tell us about your event</label>
+                  <textarea value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})}
+                    className="bg-white/[0.07] border border-white/[0.13] text-white px-4 py-[13px] text-[15px] outline-none focus:border-red transition-colors resize-y min-h-[110px] font-serif" placeholder="Event details, audience size, date, and goals..." />
                 </div>
-                <div className="flex flex-col gap-[5px]">
-                  <label className="font-oswald text-white/45 text-[10px] tracking-[2px] uppercase">Phone</label>
-                  <input type="tel" placeholder="(555) 000-0000" className="bg-white/[0.07] border border-white/[0.13] text-white px-4 py-[13px] text-[15px] outline-none focus:border-red transition-colors font-serif" />
-                </div>
+                <button onClick={handleSubmit} disabled={submitting || !formData.name || !formData.email}
+                  className="bg-red text-white py-[17px] px-9 font-oswald text-[15px] tracking-[2px] uppercase font-semibold border-none cursor-pointer hover:bg-red-dark transition-colors w-full disabled:opacity-50">
+                  {submitting ? 'Sending...' : 'Send Message →'}
+                </button>
+                <p className="text-white/30 text-[11px] text-center font-oswald tracking-[1px] mt-2">
+                  Every conversation is one step closer to a child getting the fuel they need to succeed.
+                </p>
               </div>
-              <div className="flex flex-col gap-[5px]">
-                <label className="font-oswald text-white/45 text-[10px] tracking-[2px] uppercase">How can we help?</label>
-                <select className="bg-white/[0.07] border border-white/[0.13] text-white px-4 py-[13px] text-[15px] outline-none focus:border-red transition-colors font-serif">
-                  <option value="" className="bg-navy">Select an option</option>
-                  <option className="bg-navy">School Assembly / K–12 Event</option>
-                  <option className="bg-navy">Sports Team / Athletic Organization</option>
-                  <option className="bg-navy">Corporate Keynote / Leadership Event</option>
-                  <option className="bg-navy">Partnership Opportunity</option>
-                  <option className="bg-navy">Community Food Program</option>
-                  <option className="bg-navy">Media / Press Inquiry</option>
-                  <option className="bg-navy">Other</option>
-                </select>
-              </div>
-              <div className="flex flex-col gap-[5px]">
-                <label className="font-oswald text-white/45 text-[10px] tracking-[2px] uppercase">Tell us about your event</label>
-                <textarea className="bg-white/[0.07] border border-white/[0.13] text-white px-4 py-[13px] text-[15px] outline-none focus:border-red transition-colors resize-y min-h-[110px] font-serif" placeholder="Event details, audience size, date, and goals..." />
-              </div>
-              <button
-                onClick={() => alert("Thank you! We will be in touch at info@fueltheirfuture.com shortly.")}
-                className="bg-red text-white py-[17px] px-9 font-oswald text-[15px] tracking-[2px] uppercase font-semibold border-none cursor-pointer hover:bg-red-dark transition-colors w-full"
-              >
-                Send Message →
-              </button>
-              <p className="text-white/30 text-[11px] text-center font-oswald tracking-[1px] mt-2">
-                Every conversation is one step closer to a child getting the fuel they need to succeed.
-              </p>
-            </div>
+            )}
           </FadeUp>
         </div>
       </section>
+
+      {/* Floating call button */}
+      {phoneNumber && (
+        <a href={`tel:${phoneNumber}`}
+          className="fixed bottom-6 right-6 z-[999] w-14 h-14 bg-red rounded-full flex items-center justify-center text-white text-[24px] shadow-lg hover:bg-red-dark transition-colors no-underline"
+          title={`Call ${phoneNumber}`}>
+          📞
+        </a>
+      )}
     </div>
   );
 };
