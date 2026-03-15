@@ -51,7 +51,7 @@ const LennonPage = ({ onTabChange, onScrollTo }: LennonPageProps) => {
 
       {/* BODY */}
       <section className="bg-cream py-20 pb-[100px]">
-        <div className="max-w-[1200px] mx-auto px-[60px] grid gap-20 items-start max-md:px-6 max-md:gap-10" style={{ gridTemplateColumns: "400px 1fr" }}>
+        <div className="max-w-[1200px] mx-auto px-[60px] grid grid-cols-1 md:grid-cols-[400px_1fr] gap-10 md:gap-20 items-start max-md:px-6">
           {/* LEFT - Photo & Stats */}
           <FadeUp className="sticky top-24 max-md:static">
             <div className="relative">
@@ -72,7 +72,7 @@ const LennonPage = ({ onTabChange, onScrollTo }: LennonPageProps) => {
 
           {/* RIGHT - Story */}
           <div>
-            <div className="font-bebas text-[72px] text-navy leading-[0.9] mb-[6px]">{name}</div>
+            <div className="font-bebas text-[48px] md:text-[72px] text-navy leading-[0.9] mb-[6px]">{name}</div>
             <div className="font-oswald text-red text-[13px] tracking-[3px] uppercase font-medium mb-8">{role}</div>
 
             {storyBlocks.map((block, i) => (

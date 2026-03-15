@@ -386,10 +386,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
         </div>
         <div className="max-w-[1200px] mx-auto px-[60px] relative z-[1] max-md:px-6">
           <FadeUp>
-            <div
-              className="grid items-center max-md:grid-cols-1"
-              style={{ gridTemplateColumns: "380px 1fr", gap: "80px" }}
-            >
+            <div className="grid grid-cols-1 md:grid-cols-[380px_1fr] gap-10 md:gap-[80px] items-center">
               {/* LEFT — Photo + Action photos */}
               <div className="relative">
                 <div className="relative">
@@ -468,7 +465,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
                   ))}
 
                 {/* Stats bar */}
-                <div className="grid grid-cols-4 gap-[2px] mb-8">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-[2px] mb-8">
                   <div className="bg-white/[0.05] p-[16px_12px] text-center border-t-[3px] border-red">
                     <div className="font-bebas text-red text-[32px] leading-none">10</div>
                     <div className="font-oswald text-white/50 text-[10px] tracking-[1.5px] uppercase mt-1 font-light">
@@ -506,7 +503,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
         <div className="absolute -left-5 top-1/2 -translate-y-1/2 font-bebas text-[280px] text-white/[0.05] tracking-[-10px] leading-none pointer-events-none">
           IMPACT
         </div>
-        <div className="max-w-[1200px] mx-auto grid grid-cols-3 gap-[60px] relative z-[1] max-md:grid-cols-1">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-[60px] relative z-[1]">
           {[
             { num: "13M", label: "Children in America struggle with food insecurity" },
             { num: "42M+", label: "Americans — including millions of student-athletes — go hungry" },
