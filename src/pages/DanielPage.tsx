@@ -11,6 +11,7 @@ interface DanielPageProps {
 
 const DanielPage = ({ onTabChange, onScrollTo }: DanielPageProps) => {
   const { founders } = useFounders();
+  const { content } = useSiteContent();
   const founder = founders.find(f => f.slug === 'daniel');
 
   const name = founder?.name || 'Daniel Fells';
