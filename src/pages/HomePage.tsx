@@ -226,16 +226,16 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
                   <div className="absolute top-5 -left-[18px] right-[18px] -bottom-[18px] bg-navy z-0" />
                   <div className="absolute -top-2 left-2 -right-2 bottom-2 border-[3px] border-red z-[2] pointer-events-none" />
                   <img src={danielImg} alt="Daniel Fells" className="w-full block relative z-[1]" />
-                </div>
-                {/* Action photos + badge */}
-                <div className="grid grid-cols-4 gap-[6px] mt-12">
-                  <div className="aspect-[4/3] overflow-hidden"><img src={danielAction1} alt="Daniel Fells NFL action" className="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 hover:scale-105 transition-all duration-400" /></div>
-                  <div className="aspect-[4/3] overflow-hidden"><img src={danielAction2} alt="Daniel Fells NFL action" className="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 hover:scale-105 transition-all duration-400" /></div>
-                  <div className="aspect-[4/3] overflow-hidden"><img src={danielAction3} alt="Daniel Fells NFL action" className="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 hover:scale-105 transition-all duration-400" /></div>
-                  <div className="bg-red text-white flex flex-col items-center justify-center text-center">
+                  <div className="absolute bottom-[7.5rem] -right-[6px] bg-red text-white p-[18px_24px] z-[3] text-center">
                     <span className="font-bebas text-[44px] leading-none block">10</span>
                     <span className="font-oswald text-[10px] tracking-[2px] uppercase opacity-85 font-light">NFL Seasons</span>
                   </div>
+                </div>
+                {/* Action photos */}
+                <div className="grid grid-cols-3 gap-[6px] mt-12">
+                  <div className="aspect-[4/3] overflow-hidden"><img src={danielAction1} alt="Daniel Fells NFL action" className="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 hover:scale-105 transition-all duration-400" /></div>
+                  <div className="aspect-[4/3] overflow-hidden"><img src={danielAction2} alt="Daniel Fells NFL action" className="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 hover:scale-105 transition-all duration-400" /></div>
+                  <div className="aspect-[4/3] overflow-hidden"><img src={danielAction3} alt="Daniel Fells NFL action" className="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 hover:scale-105 transition-all duration-400" /></div>
                 </div>
               </div>
 
