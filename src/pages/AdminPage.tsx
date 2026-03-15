@@ -5,6 +5,7 @@ import { useFounders } from '@/hooks/useFounders';
 import { supabase } from '@/lib/supabase';
 import type { SiteContent, Founder, Lead } from '@/lib/supabase';
 import { useNavigate } from 'react-router-dom';
+import FounderEditor from '@/components/FounderEditor';
 
 const AdminPage = () => {
   const { user, loading: authLoading, signOut } = useAuth();
@@ -16,44 +17,31 @@ const AdminPage = () => {
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
-  // Form state for site content
   const [siteForm, setSiteForm] = useState<Partial<SiteContent>>({});
-  // Form state for founder editing
   const [editingFounder, setEditingFounder] = useState<Partial<Founder> | null>(null);
 
-  useEffect(() => {
-    if (!authLoading && !user) navigate('/login');
-  }, [user, authLoading, navigate]);
-
-  useEffect(() => {
-    if (content) setSiteForm(content);
-  }, [content]);
-
-  useEffect(() => {
-    if (activeSection === 'leads') fetchLeads();
-  }, [activeSection]);
+  useEffect(() => { if (!authLoading && !user) navigate('/login'); }, [user, authLoading, navigate]);
+  useEffect(() => { if (content) setSiteForm(content); }, [content]);
+  useEffect(() => { if (activeSection === 'leads') fetchLeads(); }, [activeSection]);
 
   const fetchLeads = async () => {
     const { data } = await supabase.from('leads').select('*').order('created_at', { ascending: false });
     if (data) setLeads(data);
   };
 
+  const showMessage = (text: string) => { setMessage(text); setTimeout(() => setMessage(''), 3000); };
+
   const saveSiteContent = async () => {
     setSaving(true);
     const { error } = await supabase.from('site_content').update({
-      hero_title: siteForm.hero_title,
-      hero_subtitle: siteForm.hero_subtitle,
-      framework_text: siteForm.framework_text,
-      speaking_section_text: siteForm.speaking_section_text,
-      contact_email: siteForm.contact_email,
-      phone_number: siteForm.phone_number,
-      calendly_link: siteForm.calendly_link,
-      updated_at: new Date().toISOString(),
+      hero_title: siteForm.hero_title, hero_subtitle: siteForm.hero_subtitle,
+      framework_text: siteForm.framework_text, speaking_section_text: siteForm.speaking_section_text,
+      contact_email: siteForm.contact_email, phone_number: siteForm.phone_number,
+      calendly_link: siteForm.calendly_link, updated_at: new Date().toISOString(),
     }).eq('id', siteForm.id!);
     setSaving(false);
-    setMessage(error ? 'Error saving!' : 'Saved successfully!');
+    showMessage(error ? 'Error saving!' : 'Saved successfully!');
     if (!error) refetchContent();
-    setTimeout(() => setMessage(''), 3000);
   };
 
   const saveFounder = async () => {
@@ -67,32 +55,25 @@ const AdminPage = () => {
       ({ error } = await supabase.from('founders').update(editingFounder).eq('id', editingFounder.id!));
     }
     setSaving(false);
-    setMessage(error ? 'Error saving!' : 'Founder saved!');
+    showMessage(error ? 'Error saving: ' + error.message : 'Founder saved!');
     if (!error) { refetchFounders(); setEditingFounder(null); }
-    setTimeout(() => setMessage(''), 3000);
-  };
-
-  const uploadImage = async (file: File, founderId: string) => {
-    const ext = file.name.split('.').pop();
-    const path = `founders/${founderId}.${ext}`;
-    const { error } = await supabase.storage.from('site-images').upload(path, file, { upsert: true });
-    if (error) { setMessage('Upload error: ' + error.message); return; }
-    const { data: { publicUrl } } = supabase.storage.from('site-images').getPublicUrl(path);
-    return publicUrl;
   };
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file || !editingFounder) return;
     const id = editingFounder.id || 'new-' + Date.now();
-    const url = await uploadImage(file, id);
-    if (url) setEditingFounder({ ...editingFounder, image_url: url });
+    const ext = file.name.split('.').pop();
+    const path = `founders/${id}.${ext}`;
+    const { error } = await supabase.storage.from('site-images').upload(path, file, { upsert: true });
+    if (error) { showMessage('Upload error: ' + error.message); return; }
+    const { data: { publicUrl } } = supabase.storage.from('site-images').getPublicUrl(path);
+    setEditingFounder({ ...editingFounder, image_url: publicUrl });
   };
 
   if (authLoading || contentLoading) {
     return <div className="min-h-screen bg-navy-dark flex items-center justify-center"><div className="font-bebas text-white text-[24px]">Loading...</div></div>;
   }
-
   if (!user) return null;
 
   const navItem = (label: string, key: string) => (
@@ -143,7 +124,7 @@ const AdminPage = () => {
 
       {/* Message */}
       {message && (
-        <div className="px-10"><div className="bg-green-600/20 border border-green-500/40 text-green-400 text-[14px] p-3 font-oswald">{message}</div></div>
+        <div className="px-10"><div className={`${message.includes('Error') ? 'bg-red/20 border-red/40 text-red' : 'bg-green-600/20 border-green-500/40 text-green-400'} border text-[14px] p-3 font-oswald`}>{message}</div></div>
       )}
 
       <div className="px-10 py-6 max-w-[900px]">
@@ -170,40 +151,21 @@ const AdminPage = () => {
           <div>
             <div className="flex items-center justify-between mb-6">
               <h2 className="font-bebas text-white text-[28px] tracking-[1px]">Manage Founders</h2>
-              <button onClick={() => setEditingFounder({ name: '', role: '', bio: '', image_url: '', career_highlights: '', display_order: founders.length + 1 })}
+              <button onClick={() => setEditingFounder({ name: '', role: '', bio: '', image_url: '', slug: '', display_order: founders.length + 1, stats: [], story_blocks: [], quotes: [], teams: [], speaking_topics: [], action_images: [] })}
                 className="bg-red text-white px-5 py-2 font-oswald text-[12px] tracking-[2px] uppercase font-semibold border-none cursor-pointer hover:bg-red-dark transition-colors">
                 + Add Founder
               </button>
             </div>
 
             {editingFounder ? (
-              <div className="bg-white/[0.03] border border-white/10 p-6 mb-6">
-                <h3 className="font-bebas text-white text-[22px] mb-4">{editingFounder.id ? 'Edit' : 'New'} Founder</h3>
-                {inputField('Name', editingFounder.name || '', v => setEditingFounder({ ...editingFounder, name: v }))}
-                {inputField('Role', editingFounder.role || '', v => setEditingFounder({ ...editingFounder, role: v }))}
-                {inputField('Bio', editingFounder.bio || '', v => setEditingFounder({ ...editingFounder, bio: v }), 'textarea')}
-                {inputField('Career Highlights', editingFounder.career_highlights || '', v => setEditingFounder({ ...editingFounder, career_highlights: v }), 'textarea')}
-                {inputField('Image URL', editingFounder.image_url || '', v => setEditingFounder({ ...editingFounder, image_url: v }))}
-                {inputField('Display Order', String(editingFounder.display_order || 1), v => setEditingFounder({ ...editingFounder, display_order: parseInt(v) || 1 }))}
-                <div className="mb-4">
-                  <label className="font-oswald text-white/45 text-[10px] tracking-[2px] uppercase block mb-2">Upload Image</label>
-                  <input type="file" accept="image/*" onChange={handleImageUpload}
-                    className="text-white/60 text-[13px] font-oswald" />
-                </div>
-                {editingFounder.image_url && (
-                  <div className="mb-4"><img src={editingFounder.image_url} alt="Preview" className="w-[120px] h-[120px] object-cover" /></div>
-                )}
-                <div className="flex gap-3">
-                  <button onClick={saveFounder} disabled={saving}
-                    className="bg-red text-white px-7 py-3 font-oswald text-[13px] tracking-[2px] uppercase font-semibold border-none cursor-pointer hover:bg-red-dark transition-colors disabled:opacity-50">
-                    {saving ? 'Saving...' : 'Save'}
-                  </button>
-                  <button onClick={() => setEditingFounder(null)}
-                    className="bg-white/10 text-white/60 px-7 py-3 font-oswald text-[13px] tracking-[2px] uppercase border-none cursor-pointer hover:text-white transition-colors">
-                    Cancel
-                  </button>
-                </div>
-              </div>
+              <FounderEditor
+                founder={editingFounder}
+                onChange={setEditingFounder}
+                onSave={saveFounder}
+                onCancel={() => setEditingFounder(null)}
+                onImageUpload={handleImageUpload}
+                saving={saving}
+              />
             ) : null}
 
             <div className="flex flex-col gap-3">
@@ -213,6 +175,7 @@ const AdminPage = () => {
                   <div className="flex-1">
                     <div className="font-bebas text-white text-[20px]">{f.name}</div>
                     <div className="font-oswald text-red text-[11px] tracking-[2px] uppercase">{f.role}</div>
+                    <div className="font-oswald text-white/25 text-[10px] mt-1">slug: {f.slug || '—'}</div>
                   </div>
                   <div className="font-oswald text-white/30 text-[11px]">Order: {f.display_order}</div>
                   <button onClick={() => setEditingFounder(f)}
