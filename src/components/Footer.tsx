@@ -10,7 +10,7 @@ const Footer = ({ onTabChange, onScrollTo }: FooterProps) => (
         <div className="font-bebas text-[30px] text-white tracking-[2px]">Fuel Their Future</div>
         <div className="font-oswald text-gold text-[10px] tracking-[3px] uppercase font-light mb-[18px]">Focus • Trust • Finish</div>
         <p className="text-[13px] text-white/40 leading-[1.75] font-light max-w-[300px]">
-          Empowering student-athletes to lead the fight against food insecurity. Every athlete needs fuel. Every kid deserves it.
+          A family-built organization empowering student-athletes to lead the fight against food insecurity. Bay Area, CA — serving communities nationwide.
         </p>
       </div>
       <div>
@@ -18,10 +18,10 @@ const Footer = ({ onTabChange, onScrollTo }: FooterProps) => (
         <ul className="list-none flex flex-col gap-[10px]">
           {[
             { label: "Home", action: () => onTabChange("home") },
-            { label: "Our Founder", action: () => onTabChange("lennon") },
+            { label: "Our Founder — Lennon Fells", action: () => onTabChange("lennon") },
             { label: "Daniel Fells", action: () => onTabChange("daniel") },
-            { label: "Speaking", action: () => { onTabChange("home"); setTimeout(() => onScrollTo("speaking"), 150); } },
-            { label: "Partners", action: () => { onTabChange("home"); setTimeout(() => onScrollTo("partners"), 150); } },
+            { label: "Speaking Engagements", action: () => { onTabChange("home"); setTimeout(() => onScrollTo("speaking"), 150); } },
+            { label: "Partnerships", action: () => { onTabChange("home"); setTimeout(() => onScrollTo("partners"), 150); } },
           ].map(item => (
             <li key={item.label}>
               <button onClick={item.action} className="font-oswald text-white/45 bg-transparent border-none cursor-pointer text-[13px] tracking-[0.5px] hover:text-gold transition-colors text-left p-0">
@@ -32,7 +32,7 @@ const Footer = ({ onTabChange, onScrollTo }: FooterProps) => (
         </ul>
       </div>
       <div>
-        <div className="font-oswald text-white text-[12px] tracking-[3px] uppercase font-medium mb-5 pb-[10px] border-b border-white/10">Connect</div>
+        <div className="font-oswald text-white text-[12px] tracking-[3px] uppercase font-medium mb-5 pb-[10px] border-b border-white/10">Contact</div>
         <ul className="list-none flex flex-col gap-[10px]">
           <li><a href="mailto:info@fueltheirfuture.com" className="font-oswald text-white/45 no-underline text-[13px] tracking-[0.5px] hover:text-gold transition-colors">info@fueltheirfuture.com</a></li>
           <li><a href="https://www.fueltheirfuture.com" className="font-oswald text-white/45 no-underline text-[13px] tracking-[0.5px] hover:text-gold transition-colors">www.fueltheirfuture.com</a></li>

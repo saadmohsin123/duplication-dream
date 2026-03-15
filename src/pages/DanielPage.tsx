@@ -71,7 +71,15 @@ const DanielPage = ({ onTabChange, onScrollTo }: DanielPageProps) => {
 
             <FadeUp>
               <div className="grid grid-cols-2 gap-2 my-5 max-md:grid-cols-1">
-                {["New York Giants", "St. Louis Rams", "Atlanta Falcons", "Denver Broncos", "New England Patriots", "Seattle Seahawks", "Kansas City Chiefs"].map(team => (
+                {[
+                  "Atlanta Falcons '05–06",
+                  "St. Louis Rams '06–08",
+                  "Denver Broncos '08–09",
+                  "Seattle Seahawks '09",
+                  "Kansas City Chiefs '09–10",
+                  "New England Patriots '12–13",
+                  "New York Giants '14–15",
+                ].map(team => (
                   <div key={team} className="bg-navy text-white p-[12px_16px] font-oswald text-[12px] tracking-[1px] uppercase font-normal flex items-center gap-2">
                     <span className="text-red text-[9px]">▸</span> {team}
                   </div>
@@ -80,30 +88,31 @@ const DanielPage = ({ onTabChange, onScrollTo }: DanielPageProps) => {
             </FadeUp>
 
             <FadeUp>
+              <p className="mt-4 text-[16px] leading-[1.9] text-[#444] font-light mb-[14px]">
+                Playing for seven different franchises — each with a different system, coaching staff, and culture — gave Daniel a perspective on adaptability, trust, and performance that few people in the world possess. He didn't just survive the transitions. He thrived through them.
+              </p>
+            </FadeUp>
+
+            <FadeUp>
               <div className="border-l-4 border-red pl-6 my-7">
                 <p className="text-[20px] leading-[1.6] text-navy italic font-normal">
-                  "The lessons I learned in the NFL — about discipline, teamwork, and showing up when it matters — are the same lessons I bring to every stage, every school, and every young person I work with."
+                  "A father and son building something together — to serve other people's children. That's the story. That's the mission."
                 </p>
               </div>
             </FadeUp>
 
-            <StoryBlock label="The Comeback" title="Overcoming the Impossible">
-              <p>In 2015, Daniel faced a life-threatening MRSA infection that nearly cost him his foot — and his life. After multiple surgeries and months of recovery, he emerged with a new purpose: using his platform to inspire others through adversity.</p>
-              <p>His story of resilience has become one of the most powerful narratives in sports — and the foundation of his speaking career.</p>
-            </StoryBlock>
-
-            <StoryBlock label="The Speaker" title="Commanding Every Stage">
-              <p>Today, Daniel Fells is one of the most sought-after motivational speakers in youth athletics and corporate leadership. His talks blend raw personal storytelling with actionable frameworks for overcoming adversity, building team culture, and leading with purpose.</p>
+            <StoryBlock label="The Mission" title="From the Field to the Community">
+              <p>Today, Daniel channels that decade of NFL experience into something bigger than football. As Lead Speaker and NFL Ambassador for Fuel Their Future, he brings elite-level credibility, personal resilience, and authentic community voice to every speaking engagement, school assembly, and corporate event he delivers.</p>
+              <p>He connects the dots between what athletes eat, how they perform, and why every child — regardless of their zip code — deserves access to the nutrition that makes performance possible. It's not just a message. It's his life's experience, on every stage.</p>
             </StoryBlock>
 
             <FadeUp>
               <div className="bg-navy p-9 my-8">
                 <h3 className="font-bebas text-white text-[28px] tracking-[1px] mb-5">Speaking Topics</h3>
                 {[
-                  { title: "Resilience & Comeback", body: "How surviving a career-ending injury taught Daniel that the greatest victories happen after the hardest losses." },
-                  { title: "Leadership Under Pressure", body: "Lessons from 10 NFL seasons on leading teams through adversity, uncertainty, and high-stakes moments." },
-                  { title: "Nutrition & Performance", body: "The connection between what athletes eat and how they perform — and why food equity is a competitive advantage." },
-                  { title: "Purpose Beyond the Game", body: "Building a life of impact after athletics — for young athletes, retired pros, and everyone in between." },
+                  { title: "For Schools & Student-Athletes", body: "\"Focus, Trust, Finish\" — The performance mindset that took me from the practice field to the NFL — and how every student-athlete can build it. Includes nutrition, resilience, and community responsibility." },
+                  { title: "For Sports Teams & Organizations", body: "\"What It Takes\" — The inside story of competing across 7 NFL teams. Building winning culture, mental preparation, elite nutrition, and what separates good athletes from great ones." },
+                  { title: "For Corporate Audiences", body: "\"Building a Winning Culture\" — What the NFL taught me about accountability, trust, and what separates good teams from great ones. Purpose-driven leadership with a performance edge." },
                 ].map(topic => (
                   <div key={topic.title} className="border border-white/10 p-[20px_24px] mb-3 last:mb-0 bg-white/[0.03]">
                     <div className="font-oswald text-gold text-[13px] tracking-[2px] uppercase font-medium mb-[6px]">{topic.title}</div>
@@ -116,13 +125,13 @@ const DanielPage = ({ onTabChange, onScrollTo }: DanielPageProps) => {
             <FadeUp>
               <div className="bg-red p-[52px] mt-10 flex justify-between items-center gap-10 flex-wrap max-md:p-6 max-md:flex-col">
                 <div>
-                  <h3 className="font-bebas text-white text-[40px] tracking-[1px] mb-2">Book Daniel for Your Event</h3>
+                  <h3 className="font-bebas text-white text-[40px] tracking-[1px] mb-2">Book Daniel Fells</h3>
                   <p className="text-white/80 text-[15px] font-light leading-[1.6] max-w-[460px]">
-                    From school assemblies to corporate keynotes, Daniel delivers messages that stay with audiences long after they leave the room.
+                    We work with school districts, sports organizations, corporations, youth leagues, and community events. Contact us to check availability and discuss your specific goals.
                   </p>
                 </div>
                 <button onClick={() => { onTabChange("home"); setTimeout(() => onScrollTo("contact"), 150); }} className="bg-white text-navy px-9 py-4 font-oswald text-[14px] tracking-[2px] uppercase font-semibold border-2 border-white hover:bg-red hover:border-red hover:text-white transition-all cursor-pointer whitespace-nowrap">
-                  Book Now →
+                  Check Availability
                 </button>
               </div>
             </FadeUp>
