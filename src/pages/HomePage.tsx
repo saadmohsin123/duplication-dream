@@ -263,7 +263,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
 
           {/* Action photos + Stats bar */}
           <FadeUp>
-            <div className="grid grid-cols-[420px_1fr] gap-16 mt-14 max-md:grid-cols-1">
+            <div className="grid grid-cols-[420px_1fr] gap-16 mt-6 max-md:grid-cols-1">
               {/* Action photos */}
               <div className="grid grid-cols-3 gap-2">
                 <img src={danielAction1} alt="Daniel Fells NFL action" className="w-full h-[120px] object-cover" />
