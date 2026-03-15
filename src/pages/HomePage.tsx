@@ -18,6 +18,9 @@ interface HomePageProps {
 
 const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
   const { content } = useSiteContent();
+  const { founders } = useFounders();
+  const lennon = founders.find(f => f.slug === 'lennon');
+  const daniel = founders.find(f => f.slug === 'daniel');
 
   // Contact form state
   const [formData, setFormData] = useState({ name: '', organization: '', email: '', phone: '', event_type: '', message: '' });
