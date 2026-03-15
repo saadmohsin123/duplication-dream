@@ -216,10 +216,11 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
       {/* DANIEL FELLS SPOTLIGHT */}
       <section className="bg-navy-dark py-[100px] relative overflow-hidden">
         <div className="absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-b from-red to-red-dark" />
+        <div className="absolute -right-[60px] top-1/2 -translate-y-1/2 font-bebas text-[320px] text-white/[0.025] leading-none pointer-events-none tracking-[-10px]">#86</div>
         <div className="max-w-[1200px] mx-auto px-[60px] relative z-[1] max-md:px-6">
           <FadeUp>
-            <div className="grid grid-cols-[420px_1fr] gap-16 items-start max-md:grid-cols-1">
-              {/* LEFT — Photo */}
+            <div className="grid items-center max-md:grid-cols-1" style={{ gridTemplateColumns: "380px 1fr", gap: "80px" }}>
+              {/* LEFT — Photo + Action photos */}
               <div className="relative">
                 <div className="relative">
                   <div className="absolute top-5 -left-[18px] right-[18px] -bottom-[18px] bg-navy z-0" />
@@ -230,73 +231,62 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
                   <span className="font-bebas text-[44px] leading-none block">10</span>
                   <span className="font-oswald text-[10px] tracking-[2px] uppercase opacity-85 font-light">NFL Seasons</span>
                 </div>
+                {/* Action photos */}
+                <div className="grid grid-cols-3 gap-[6px] mt-12">
+                  <div className="aspect-[4/3] overflow-hidden"><img src={danielAction1} alt="Daniel Fells NFL action" className="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 hover:scale-105 transition-all duration-400" /></div>
+                  <div className="aspect-[4/3] overflow-hidden"><img src={danielAction2} alt="Daniel Fells NFL action" className="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 hover:scale-105 transition-all duration-400" /></div>
+                  <div className="aspect-[4/3] overflow-hidden"><img src={danielAction3} alt="Daniel Fells NFL action" className="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 hover:scale-105 transition-all duration-400" /></div>
+                </div>
               </div>
 
               {/* RIGHT — Content */}
               <div>
-                <div className="font-oswald text-gold text-[12px] tracking-[4px] uppercase font-normal mb-4 flex items-center gap-3">
+                <div className="font-oswald text-white/40 text-[11px] tracking-[4px] uppercase font-medium mb-[14px] flex items-center gap-3">
                   Our Lead Speaker <span className="block w-10 h-[2px] bg-white/20" />
                 </div>
-                <h2 className="font-bebas text-white leading-[0.92] tracking-[1px] mb-4" style={{ fontSize: "clamp(60px, 8vw, 100px)" }}>
+                <div className="font-bebas text-white leading-[0.9] tracking-[1px] mb-2" style={{ fontSize: "clamp(52px, 6vw, 80px)" }}>
                   Daniel<br />Fells
-                </h2>
-                <div className="font-oswald text-red text-[13px] tracking-[3px] uppercase font-medium mb-8">
+                </div>
+                <div className="font-oswald text-red text-[13px] tracking-[3px] uppercase font-medium mb-7">
                   #86 • Tight End • 10 NFL Seasons • 2015 Ed Block Courage Award Winner
                 </div>
 
-                <div className="border-l-4 border-red pl-6 mb-8">
-                  <p className="text-white/80 text-[20px] leading-[1.6] italic font-light">
+                <div className="border-l-4 border-red pl-6 mb-7">
+                  <p className="text-white text-[20px] leading-[1.6] italic font-light">
                     "A father and son building something together — to serve other people's children. That's the story. That's the mission."
                   </p>
                 </div>
 
-                <p className="text-white/60 text-[16px] leading-[1.85] font-light mb-5">
+                <p className="text-white/[0.68] text-[16px] leading-[1.9] font-light mb-4">
                   Daniel Fells spent 10 seasons competing as a Tight End in the NFL — across seven teams, earning his place on every roster through relentless preparation, physical resilience, and an uncompromising standard. Today, he channels that decade of experience into something bigger than football.
                 </p>
-                <p className="text-white/60 text-[16px] leading-[1.85] font-light mb-8">
+                <p className="text-white/[0.68] text-[16px] leading-[1.9] font-light mb-8">
                   As Lead Speaker and NFL Ambassador for Fuel Their Future, Daniel brings elite credibility and authentic community voice to every stage — connecting the performance world with the people who need it most.
                 </p>
 
-              </div>
-            </div>
-          </FadeUp>
+                {/* Stats bar */}
+                <div className="grid grid-cols-4 gap-[2px] mb-8">
+                  <div className="bg-white/[0.05] p-[16px_12px] text-center border-t-[3px] border-red">
+                    <div className="font-bebas text-red text-[32px] leading-none">10</div>
+                    <div className="font-oswald text-white/50 text-[10px] tracking-[1.5px] uppercase mt-1 font-light">NFL Seasons</div>
+                  </div>
+                  <div className="bg-white/[0.05] p-[16px_12px] text-center border-t-[3px] border-red">
+                    <div className="font-bebas text-red text-[32px] leading-none">7</div>
+                    <div className="font-oswald text-white/50 text-[10px] tracking-[1.5px] uppercase mt-1 font-light">NFL Teams</div>
+                  </div>
+                  <div className="bg-white/[0.05] p-[16px_12px] text-center border-t-[3px] border-gold">
+                    <div className="font-bebas text-gold text-[18px] leading-[1.1] mt-[6px]">2015</div>
+                    <div className="font-oswald text-white/50 text-[10px] tracking-[1px] uppercase mt-1 font-light">Ed Block Courage Award</div>
+                  </div>
+                </div>
 
-          {/* Action photos + Stats bar */}
-          <FadeUp>
-            <div className="grid grid-cols-[420px_1fr] gap-16 mt-6 max-md:grid-cols-1">
-              {/* Action photos */}
-              <div className="grid grid-cols-3 gap-2">
-                <img src={danielAction1} alt="Daniel Fells NFL action" className="w-full h-[120px] object-cover" />
-                <img src={danielAction2} alt="Daniel Fells NFL action" className="w-full h-[120px] object-cover" />
-                <img src={danielAction3} alt="Daniel Fells NFL action" className="w-full h-[120px] object-cover" />
+                <button
+                  onClick={() => onTabChange("daniel")}
+                  className="bg-red text-white px-9 py-4 font-oswald text-[14px] tracking-[2px] uppercase font-semibold border-2 border-red hover:bg-red-dark hover:border-red-dark transition-all cursor-pointer hover:-translate-y-[2px]"
+                >
+                  Read Daniel's Full Story →
+                </button>
               </div>
-              {/* Stats bar */}
-              <div className="grid grid-cols-3">
-                <div className="border-t-[3px] border-red bg-white/[0.05] p-6 text-center">
-                  <span className="font-bebas text-red text-[40px] leading-none block">10</span>
-                  <span className="font-oswald text-white/60 text-[11px] tracking-[2px] uppercase font-light mt-2 block">NFL Seasons</span>
-                </div>
-                <div className="border-t-[3px] border-red bg-white/[0.05] p-6 text-center">
-                  <span className="font-bebas text-red text-[40px] leading-none block">7</span>
-                  <span className="font-oswald text-white/60 text-[11px] tracking-[2px] uppercase font-light mt-2 block">NFL Teams</span>
-                </div>
-                <div className="border-t-[3px] border-gold bg-white/[0.05] p-6 text-center">
-                  <span className="font-bebas text-gold text-[40px] leading-none block">2015</span>
-                  <span className="font-oswald text-white/60 text-[11px] tracking-[2px] uppercase font-light mt-2 block">Ed Block Courage Award</span>
-                </div>
-              </div>
-            </div>
-          </FadeUp>
-
-          {/* CTA Button centered */}
-          <FadeUp>
-            <div className="flex justify-center mt-8">
-              <button
-                onClick={() => onTabChange("daniel")}
-                className="bg-red text-white px-12 py-5 font-oswald text-[14px] tracking-[3px] uppercase font-semibold border-2 border-red hover:bg-red-dark hover:border-red-dark transition-all cursor-pointer"
-              >
-                Read Daniel's Full Story →
-              </button>
             </div>
           </FadeUp>
         </div>
