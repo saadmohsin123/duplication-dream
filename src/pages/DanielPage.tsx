@@ -2,6 +2,7 @@ import FadeUp from "../components/FadeUp";
 import MissionBar from "../components/MissionBar";
 import danielImg from "@/assets/daniel-portrait.jpg";
 import { useFounders } from "@/hooks/useFounders";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 interface DanielPageProps {
   onTabChange: (tab: string) => void;
@@ -10,6 +11,7 @@ interface DanielPageProps {
 
 const DanielPage = ({ onTabChange, onScrollTo }: DanielPageProps) => {
   const { founders } = useFounders();
+  const { content } = useSiteContent();
   const founder = founders.find(f => f.slug === 'daniel');
 
   const name = founder?.name || 'Daniel Fells';
@@ -145,8 +147,8 @@ const DanielPage = ({ onTabChange, onScrollTo }: DanielPageProps) => {
                     We work with school districts, sports organizations, corporations, youth leagues, and community events. Contact us to check availability and discuss your specific goals.
                   </p>
                 </div>
-                <button onClick={() => { onTabChange("home"); setTimeout(() => onScrollTo("contact"), 150); }}
-                  className="bg-white text-navy px-9 py-4 font-oswald text-[14px] tracking-[2px] uppercase font-semibold border-2 border-white hover:bg-red hover:border-red hover:text-white transition-all cursor-pointer whitespace-nowrap">
+                <button onClick={() => content?.calendly_link ? window.open(content.calendly_link, '_blank') : (onTabChange("home"), setTimeout(() => onScrollTo("contact"), 150))}
+                  className="bg-gold text-navy px-9 py-4 font-oswald text-[14px] tracking-[2px] uppercase font-semibold border-2 border-gold hover:bg-gold/90 transition-all cursor-pointer whitespace-nowrap">
                   Check Availability
                 </button>
               </div>

@@ -232,13 +232,8 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
                 </p>
               </div>
               <div className="flex gap-3 flex-wrap">
-                {content?.calendly_link && (
-                  <button onClick={() => window.open(content.calendly_link, '_blank')}
-                    className="bg-gold text-navy px-9 py-4 font-oswald text-[14px] tracking-[2px] uppercase font-semibold border-2 border-gold hover:bg-gold/90 transition-all cursor-pointer whitespace-nowrap">
-                    Book Daniel Fells
-                  </button>
-                )}
-                <button onClick={() => onScrollTo("contact")} className="bg-white text-navy px-9 py-4 font-oswald text-[14px] tracking-[2px] uppercase font-semibold border-2 border-white hover:bg-red hover:border-red hover:text-white transition-all cursor-pointer whitespace-nowrap">
+                <button onClick={() => content?.calendly_link ? window.open(content.calendly_link, '_blank') : onScrollTo("contact")}
+                  className="bg-gold text-navy px-9 py-4 font-oswald text-[14px] tracking-[2px] uppercase font-semibold border-2 border-gold hover:bg-gold/90 transition-all cursor-pointer whitespace-nowrap">
                   Check Availability
                 </button>
               </div>
