@@ -290,7 +290,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
 
           {/* CTA Button centered */}
           <FadeUp>
-            <div className="flex justify-center mt-14">
+            <div className="flex justify-center mt-8">
               <button
                 onClick={() => onTabChange("daniel")}
                 className="bg-red text-white px-12 py-5 font-oswald text-[14px] tracking-[3px] uppercase font-semibold border-2 border-red hover:bg-red-dark hover:border-red-dark transition-all cursor-pointer"
