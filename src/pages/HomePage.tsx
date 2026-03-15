@@ -279,10 +279,10 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
                   Our Lead Speaker <span className="block w-10 h-[2px] bg-white/20" />
                 </div>
                 <div className="font-bebas text-white leading-[0.9] tracking-[1px] mb-2" style={{ fontSize: "clamp(52px, 6vw, 80px)" }}>
-                  Daniel<br />Fells
+                  {(daniel?.name || 'Daniel Fells').split(' ')[0]}<br />{(daniel?.name || 'Daniel Fells').split(' ').slice(1).join(' ')}
                 </div>
                 <div className="font-oswald text-red text-[13px] tracking-[3px] uppercase font-medium mb-7">
-                  #86 • Tight End • 10 NFL Seasons • 2015 Ed Block Courage Award Winner
+                  {daniel?.homepage_role_label || '#86 • Tight End • 10 NFL Seasons • 2015 Ed Block Courage Award Winner'}
                 </div>
 
                 <div className="border-l-4 border-red pl-6 mb-7">
