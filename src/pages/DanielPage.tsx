@@ -82,7 +82,7 @@ const DanielPage = ({ onTabChange, onScrollTo }: DanielPageProps) => {
 
           {/* RIGHT */}
           <div>
-            <div className="font-bebas text-[72px] text-navy leading-[0.9] mb-[6px]">{name}</div>
+            <div className="font-bebas text-[48px] md:text-[72px] text-navy leading-[0.9] mb-[6px]">{name}</div>
             <div className="font-oswald text-red text-[13px] tracking-[3px] uppercase font-medium mb-8">{role}</div>
 
             {storyBlocks[0] && (

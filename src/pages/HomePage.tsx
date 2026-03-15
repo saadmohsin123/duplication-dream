@@ -503,7 +503,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
         <div className="absolute -left-5 top-1/2 -translate-y-1/2 font-bebas text-[280px] text-white/[0.05] tracking-[-10px] leading-none pointer-events-none">
           IMPACT
         </div>
-        <div className="max-w-[1200px] mx-auto grid grid-cols-3 gap-[60px] relative z-[1] max-md:grid-cols-1">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-[60px] relative z-[1]">
           {[
             { num: "13M", label: "Children in America struggle with food insecurity" },
             { num: "42M+", label: "Americans — including millions of student-athletes — go hungry" },
