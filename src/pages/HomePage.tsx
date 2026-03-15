@@ -55,19 +55,22 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
         <div className="absolute -right-10 top-1/2 -translate-y-1/2 font-bebas text-[380px] text-white/[0.025] tracking-[-20px] leading-none pointer-events-none">FTF</div>
         <div className="max-w-[1200px] mx-auto px-[60px] max-md:px-6">
           <FadeUp>
-            <div className="font-oswald text-red text-[11px] tracking-[4px] uppercase font-medium mb-[14px] flex items-center gap-3" style={{ color: "rgba(255,255,255,0.4)" }}>
+            <div className="font-oswald text-[11px] tracking-[4px] uppercase font-medium mb-[14px] flex items-center gap-3" style={{ color: "rgba(255,255,255,0.4)" }}>
               Our Framework <span className="block w-10 h-[2px]" style={{ background: "rgba(255,255,255,0.2)" }} />
             </div>
             <h2 className="font-bebas text-white leading-none tracking-[1px] mb-5" style={{ fontSize: "clamp(40px, 5vw, 62px)" }}>
-              Focus. Trust. Finish.
+              The FTF Framework™
             </h2>
+            <p className="text-white/60 text-[17px] leading-[1.75] font-light max-w-[600px]">
+              Three pillars. One standard. Built for athletes, students, executives, and leaders at every level.
+            </p>
           </FadeUp>
           <FadeUp>
             <div className="grid grid-cols-3 gap-[2px] mt-[60px] max-md:grid-cols-1">
               {[
-                { bg: "bg-navy-mid", letter: "F", title: "FOCUS", body: "We start by narrowing in — identifying the communities, teams, and programs where the need is greatest. Every resource, every meal, and every volunteer is directed with precision." },
-                { bg: "bg-red", letter: "T", title: "TRUST", body: "We build authentic relationships with coaches, families, and athletes. Trust is earned through consistency — showing up, delivering, and following through every single time." },
-                { bg: "bg-[#1a5c2a]", letter: "F", title: "FINISH", body: "We don't start what we can't finish. Every initiative has a measurable outcome. Every meal is accounted for. Every athlete knows someone showed up for them — start to finish." },
+                { bg: "bg-navy-mid", letter: "F", title: "FOCUS", body: "Know where you're going. We help athletes and organizations direct their energy toward what matters most — eliminating distraction and building clarity of purpose." },
+                { bg: "bg-red", letter: "T", title: "TRUST", body: "Believe in the process. High-performing teams are built on trust — in each other, in the system, and in the mission. With it, teams execute when it matters most." },
+                { bg: "bg-[#1a5c2a]", letter: "F", title: "FINISH", body: "Execute. Every time. The world rewards finishers — not starters. We develop people who complete what they commit to, on the field and beyond it." },
               ].map((card) => (
                 <div key={card.title} className={`${card.bg} p-[56px_44px] relative overflow-hidden max-md:p-8`}>
                   <div className="font-bebas text-[110px] leading-[0.85] text-white/[0.12] absolute top-5 right-5">{card.letter}</div>
