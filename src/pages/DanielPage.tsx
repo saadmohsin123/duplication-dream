@@ -2,6 +2,7 @@ import FadeUp from "../components/FadeUp";
 import MissionBar from "../components/MissionBar";
 import danielImg from "@/assets/daniel-portrait.jpg";
 import { useFounders } from "@/hooks/useFounders";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 interface DanielPageProps {
   onTabChange: (tab: string) => void;
