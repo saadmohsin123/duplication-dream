@@ -8,6 +8,7 @@ import danielAction1 from "@/assets/daniel-action-1.jpg";
 import danielAction2 from "@/assets/daniel-action-2.jpg";
 import danielAction3 from "@/assets/daniel-action-3.jpg";
 import { useSiteContent } from "@/hooks/useSiteContent";
+import { useFounders } from "@/hooks/useFounders";
 import { supabase } from "@/lib/supabase";
 
 interface HomePageProps {
