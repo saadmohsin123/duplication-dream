@@ -17,6 +17,11 @@ export type SiteContent = {
   updated_at: string;
 };
 
+export type FounderStat = { num: string; label: string };
+export type StoryBlock = { label: string; title: string; paragraphs: string[] };
+export type Quote = { text: string };
+export type SpeakingTopic = { title: string; body: string };
+
 export type Founder = {
   id: string;
   name: string;
@@ -25,6 +30,22 @@ export type Founder = {
   image_url: string;
   career_highlights: string;
   display_order: number;
+  slug: string;
+  subtitle: string;
+  page_tagline: string;
+  page_hero_text: string;
+  homepage_quote: string;
+  homepage_description: string;
+  homepage_role_label: string;
+  stats: FounderStat[];
+  story_blocks: StoryBlock[];
+  quotes: Quote[];
+  teams: string[];
+  speaking_topics: SpeakingTopic[];
+  action_images: string[];
+  badge_text: string;
+  badge_number: string;
+  cta_text: string;
 };
 
 export type Lead = {
