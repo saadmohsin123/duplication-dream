@@ -465,7 +465,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
                   ))}
 
                 {/* Stats bar */}
-                <div className="grid grid-cols-4 gap-[2px] mb-8">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-[2px] mb-8">
                   <div className="bg-white/[0.05] p-[16px_12px] text-center border-t-[3px] border-red">
                     <div className="font-bebas text-red text-[32px] leading-none">10</div>
                     <div className="font-oswald text-white/50 text-[10px] tracking-[1.5px] uppercase mt-1 font-light">
