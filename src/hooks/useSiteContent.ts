@@ -10,7 +10,7 @@ export const useSiteContent = () => {
       .from('site_content')
       .select('*')
       .limit(1)
-      .single();
+      .maybeSingle();
     
     if (!error && data) setContent(data);
     setLoading(false);
