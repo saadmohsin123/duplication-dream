@@ -386,10 +386,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
         </div>
         <div className="max-w-[1200px] mx-auto px-[60px] relative z-[1] max-md:px-6">
           <FadeUp>
-            <div
-              className="grid items-center max-md:grid-cols-1"
-              style={{ gridTemplateColumns: "380px 1fr", gap: "80px" }}
-            >
+            <div className="grid grid-cols-1 md:grid-cols-[380px_1fr] gap-10 md:gap-[80px] items-center">
               {/* LEFT — Photo + Action photos */}
               <div className="relative">
                 <div className="relative">
