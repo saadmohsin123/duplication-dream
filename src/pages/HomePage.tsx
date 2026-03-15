@@ -141,7 +141,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
             </p>
           </FadeUp>
           <FadeUp>
-            <div className="grid grid-cols-3 gap-[2px] mt-[60px] max-md:grid-cols-1">
+            <div className="grid grid-cols-3 gap-0 mt-[60px] max-md:grid-cols-1">
               {[
                 {
                   bg: "bg-navy-mid",
