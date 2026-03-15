@@ -164,7 +164,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
               <div className="inline-flex items-center gap-5">
                 <div className="w-[60px] h-px bg-red" />
                 <p className="font-serif text-[18px] text-[#666] italic font-light max-w-[520px] leading-[1.7]">
-                  "At 14, he's already proving that the next generation of leaders doesn't wait to be asked."
+                  "{lennon?.homepage_quote || "At 14, he's already proving that the next generation of leaders doesn't wait to be asked."}"
                 </p>
                 <div className="w-[60px] h-px bg-red" />
               </div>
