@@ -1,7 +1,7 @@
 import FadeUp from "../components/FadeUp";
 import MissionBar from "../components/MissionBar";
 import ftfLogo from "@/assets/ftf-logo.png";
-import lennonImg from "@/assets/lennon-portrait.jpg";
+import lennonImg from "@/assets/lennon-action.jpg";
 import danielImg from "@/assets/daniel-portrait.jpg";
 
 interface HomePageProps {
