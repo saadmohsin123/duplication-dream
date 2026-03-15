@@ -1,6 +1,7 @@
 import FadeUp from "../components/FadeUp";
 import MissionBar from "../components/MissionBar";
 import lennonImg from "@/assets/lennon-portrait.jpg";
+import { useFounders } from "@/hooks/useFounders";
 
 interface LennonPageProps {
   onTabChange: (tab: string) => void;
@@ -8,6 +9,24 @@ interface LennonPageProps {
 }
 
 const LennonPage = ({ onTabChange, onScrollTo }: LennonPageProps) => {
+  const { founders } = useFounders();
+  const founder = founders.find(f => f.slug === 'lennon');
+
+  const name = founder?.name || 'Lennon Fells';
+  const role = founder?.homepage_role_label || 'Founder & CEO, Fuel Their Future';
+  const tagline = founder?.page_tagline || 'Fuel Their Future — Our Founder';
+  const heroText = founder?.page_hero_text || "At 14, he's already changing communities. The young visionary who saw a gap no one was closing — and decided to close it himself.";
+  const stats = founder?.stats || [
+    { num: "14", label: "Years Old" },
+    { num: "2", label: "Varsity Sports" },
+    { num: "20%", label: "Profits Donated" },
+    { num: "500+", label: "Volunteer Hours" },
+  ];
+  const storyBlocks = founder?.story_blocks || [];
+  const quotes = founder?.quotes || [];
+  const firstName = name.split(' ')[0];
+  const lastName = name.split(' ').slice(1).join(' ');
+
   return (
     <div>
       {/* PAGE HERO */}
@@ -17,13 +36,13 @@ const LennonPage = ({ onTabChange, onScrollTo }: LennonPageProps) => {
         <div className="max-w-[1200px] mx-auto relative z-[1]">
           <div className="font-oswald text-gold text-[12px] tracking-[4px] uppercase font-normal mb-4 flex items-center gap-3">
             <span className="block w-10 h-[2px] bg-red" />
-            Fuel Their Future — Our Founder
+            {tagline}
           </div>
           <h1 className="font-bebas text-white leading-[0.92] tracking-[1px]" style={{ fontSize: "clamp(52px, 7vw, 90px)" }}>
-            Lennon<br /><span className="text-red">Fells</span>
+            {firstName}<br /><span className="text-red">{lastName}</span>
           </h1>
           <p className="text-white/65 text-[18px] leading-[1.75] font-light max-w-[600px] mt-5">
-            At 14, he's already changing communities. The young visionary who saw a gap no one was closing — and decided to close it himself.
+            {heroText}
           </p>
         </div>
       </div>
@@ -38,16 +57,11 @@ const LennonPage = ({ onTabChange, onScrollTo }: LennonPageProps) => {
             <div className="relative">
               <div className="absolute top-5 -left-[18px] right-[18px] -bottom-[18px] bg-navy z-0" />
               <div className="absolute -top-2 left-2 -right-2 bottom-2 border-[3px] border-red z-[2] pointer-events-none" />
-              <img src={lennonImg} alt="Lennon Fells" className="w-full block relative z-[1]" />
+              <img src={founder?.image_url || lennonImg} alt={name} className="w-full block relative z-[1]" />
             </div>
             <div className="mt-12 bg-navy p-7">
               <div className="font-oswald text-gold text-[10px] tracking-[3px] uppercase font-normal mb-[14px]">Quick Facts</div>
-              {[
-                { num: "14", label: "Years Old" },
-                { num: "2", label: "Varsity Sports" },
-                { num: "20%", label: "Profits Donated" },
-                { num: "500+", label: "Volunteer Hours" },
-              ].map(stat => (
+              {stats.map(stat => (
                 <div key={stat.label} className="flex justify-between items-center py-[10px] border-b border-white/[0.08] last:border-none">
                   <span className="font-bebas text-red text-[28px]">{stat.num}</span>
                   <span className="font-oswald text-white/60 text-[11px] tracking-[1px] uppercase font-light text-right max-w-[160px] leading-[1.4]">{stat.label}</span>
@@ -58,54 +72,31 @@ const LennonPage = ({ onTabChange, onScrollTo }: LennonPageProps) => {
 
           {/* RIGHT - Story */}
           <div>
-            <div className="font-bebas text-[72px] text-navy leading-[0.9] mb-[6px]">Lennon Fells</div>
-            <div className="font-oswald text-red text-[13px] tracking-[3px] uppercase font-medium mb-8">Founder & CEO, Fuel Their Future</div>
+            <div className="font-bebas text-[72px] text-navy leading-[0.9] mb-[6px]">{name}</div>
+            <div className="font-oswald text-red text-[13px] tracking-[3px] uppercase font-medium mb-8">{role}</div>
 
-            <StoryBlock label="Origin Story" title="From the Sidelines to the Front Lines">
-              <p>Lennon Fells didn't wait for someone to fix the problem. At 14 years old, the high school freshman from the San Francisco Bay Area looked around his community — at the young athletes he played with and against — and saw something most adults overlooked: kids who were competing at high levels but going home to empty kitchens.</p>
-              <p>That's when he founded Fuel Their Future.</p>
-            </StoryBlock>
-
-            <FadeUp>
-              <div className="bg-navy p-[32px_36px] my-8 relative overflow-hidden">
-                <div className="absolute -top-10 left-[10px] font-bebas text-[200px] text-white/[0.04] leading-none">"</div>
-                <p className="text-white text-[20px] leading-[1.65] italic font-light relative z-[1]">
-                  "I kept hearing about food insecurity as a statistic. But when I saw kids I knew — athletes I competed against — struggling to eat after practice, it stopped being a number. It became personal."
-                </p>
+            {storyBlocks.map((block, i) => (
+              <div key={i}>
+                {/* Insert quote after first story block */}
+                {i === 1 && quotes[0] && (
+                  <FadeUp>
+                    <div className="bg-navy p-[32px_36px] my-8 relative overflow-hidden">
+                      <div className="absolute -top-10 left-[10px] font-bebas text-[200px] text-white/[0.04] leading-none">"</div>
+                      <p className="text-white text-[20px] leading-[1.65] italic font-light relative z-[1]">
+                        "{quotes[0].text}"
+                      </p>
+                    </div>
+                  </FadeUp>
+                )}
+                <StoryBlock label={block.label} title={block.title}>
+                  {block.paragraphs.map((p, j) => <p key={j}>{p}</p>)}
+                </StoryBlock>
               </div>
-            </FadeUp>
+            ))}
 
-            <StoryBlock label="The Entrepreneur" title="Building With Purpose">
-              <p>In 4th grade, Lennon launched <strong>Lennon's Sweetpop</strong> — a dessert-flavored popcorn business with a built-in social mission. From day one, he committed 20% of all profits to the Samaritan House, a local organization providing under-served families with essential resources.</p>
-            </StoryBlock>
-
-            <StoryBlock label="Hands-On Service" title="Seeing the Need Firsthand">
-              <p>Through YMSL, Lennon volunteers across a range of philanthropies — but his focus has always gravitated toward programs fighting food insecurity. He doesn't just give from a distance. He shows up.</p>
-              <ul className="list-none my-5 flex flex-col gap-3">
-                {[
-                  { bold: "Self Help for the Elderly (San Mateo)", desc: "Regularly delivers fresh and frozen lunches to elderly and underserved residents." },
-                  { bold: "Hillsborough Harvest Garden", desc: "Volunteers at the community garden that donates fresh produce directly to the Samaritan House." },
-                  { bold: "Boys & Girls Club Peninsula, East Palo Alto", desc: "Assists with Second Harvest Food Bank grocery and produce box distribution." },
-                ].map(item => (
-                  <li key={item.bold} className="flex gap-[14px] items-start text-[15px] leading-[1.6] text-[#444] font-light">
-                    <span className="text-red text-[12px] flex-shrink-0 mt-[3px]">▸</span>
-                    <span><strong>{item.bold}</strong> — {item.desc}</span>
-                  </li>
-                ))}
-              </ul>
-            </StoryBlock>
-
-            <StoryBlock label="The Athlete" title="Competing at Two Sports">
-              <p>Lennon competes in football and basketball, and knows firsthand how vital proper nutrition is for performance, recovery, and longevity as an athlete.</p>
-              <div className="grid grid-cols-2 gap-4 my-5 max-w-[280px]">
-                {[{ icon: "🏈", label: "Football" }, { icon: "🏀", label: "Basketball" }].map(s => (
-                  <div key={s.label} className="bg-navy text-white p-4 text-center">
-                    <span className="text-[28px] block mb-2">{s.icon}</span>
-                    <div className="font-oswald text-[14px] tracking-[2px] uppercase font-medium">{s.label}</div>
-                  </div>
-                ))}
-              </div>
-            </StoryBlock>
+            {storyBlocks.length === 0 && (
+              <p className="text-[16px] leading-[1.9] text-[#444] font-light">{founder?.bio || ''}</p>
+            )}
 
             <FadeUp>
               <div className="bg-red p-9 my-8">
@@ -115,11 +106,6 @@ const LennonPage = ({ onTabChange, onScrollTo }: LennonPageProps) => {
                 </p>
               </div>
             </FadeUp>
-
-            <StoryBlock label="The Vision" title="Student-Athletes Leading the Way">
-              <p>Lennon's organizing belief — the idea at the heart of Fuel Their Future — is that student-athletes shouldn't just be recipients of food equity efforts. They should be leading them. They understand the connection between nutrition and performance better than anyone.</p>
-              <p>That's the mission. That's Lennon's story.</p>
-            </StoryBlock>
 
             <FadeUp className="mt-4 flex gap-4 flex-wrap">
               <button onClick={() => { onTabChange("home"); setTimeout(() => onScrollTo("contact"), 150); }} className="bg-red text-white px-9 py-4 font-oswald text-[14px] tracking-[2px] uppercase font-semibold border-2 border-red hover:bg-red-dark hover:border-red-dark transition-all cursor-pointer">
