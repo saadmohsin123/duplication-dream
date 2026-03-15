@@ -291,12 +291,9 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
                   </p>
                 </div>
 
-                <p className="text-white/[0.68] text-[16px] leading-[1.9] font-light mb-4">
-                  Daniel Fells spent 10 seasons competing as a Tight End in the NFL — across seven teams, earning his place on every roster through relentless preparation, physical resilience, and an uncompromising standard. Today, he channels that decade of experience into something bigger than football.
-                </p>
-                <p className="text-white/[0.68] text-[16px] leading-[1.9] font-light mb-8">
-                  As Lead Speaker and NFL Ambassador for Fuel Their Future, Daniel brings elite credibility and authentic community voice to every stage — connecting the performance world with the people who need it most.
-                </p>
+                {(daniel?.homepage_description || 'Daniel Fells spent 10 seasons competing as a Tight End in the NFL — across seven teams, earning his place on every roster through relentless preparation, physical resilience, and an uncompromising standard. Today, he channels that decade of experience into something bigger than football.\n\nAs Lead Speaker and NFL Ambassador for Fuel Their Future, Daniel brings elite credibility and authentic community voice to every stage — connecting the performance world with the people who need it most.').split('\n\n').map((p, i) => (
+                  <p key={i} className="text-white/[0.68] text-[16px] leading-[1.9] font-light mb-4">{p}</p>
+                ))}
 
                 {/* Stats bar */}
                 <div className="grid grid-cols-4 gap-[2px] mb-8">
