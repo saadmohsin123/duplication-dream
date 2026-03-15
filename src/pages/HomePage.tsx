@@ -213,32 +213,47 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
       {/* DANIEL FELLS SPOTLIGHT */}
       <section className="bg-navy-dark py-[100px] relative overflow-hidden">
         <div className="absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-b from-red to-red-dark" />
-        <div className="absolute -right-[60px] top-1/2 -translate-y-1/2 font-bebas text-[320px] text-white/[0.025] leading-none pointer-events-none tracking-[-10px]">#86</div>
         <div className="max-w-[1200px] mx-auto px-[60px] relative z-[1] max-md:px-6">
           <FadeUp>
-            <div className="grid grid-cols-[380px_1fr] gap-20 items-center max-md:grid-cols-1">
+            <div className="grid grid-cols-[420px_1fr] gap-16 items-start max-md:grid-cols-1">
+              {/* LEFT — Photo */}
               <div className="relative">
                 <div className="relative">
                   <div className="absolute top-5 -left-[18px] right-[18px] -bottom-[18px] bg-navy z-0" />
                   <div className="absolute -top-2 left-2 -right-2 bottom-2 border-[3px] border-red z-[2] pointer-events-none" />
-                  <img src={danielImg} alt="Daniel Fells" className="w-full block relative z-[1]" style={{ filter: "grayscale(10%)" }} />
+                  <img src={danielImg} alt="Daniel Fells" className="w-full block relative z-[1]" />
                 </div>
                 <div className="absolute -bottom-6 -right-[6px] bg-red text-white p-[18px_24px] z-[3] text-center">
                   <span className="font-bebas text-[44px] leading-none block">10</span>
                   <span className="font-oswald text-[10px] tracking-[2px] uppercase opacity-85 font-light">NFL Seasons</span>
                 </div>
               </div>
+
+              {/* RIGHT — Content */}
               <div>
                 <div className="font-oswald text-gold text-[12px] tracking-[4px] uppercase font-normal mb-4 flex items-center gap-3">
-                  <span className="block w-10 h-[2px] bg-red" />
-                  Lead Speaker & NFL Ambassador
+                  Our Lead Speaker <span className="block w-10 h-[2px] bg-white/20" />
                 </div>
-                <h2 className="font-bebas text-white leading-[0.92] tracking-[1px] mb-5" style={{ fontSize: "clamp(40px, 5vw, 62px)" }}>
-                  Daniel<br /><span className="text-red">Fells</span>
+                <h2 className="font-bebas text-white leading-[0.92] tracking-[1px] mb-4" style={{ fontSize: "clamp(60px, 8vw, 100px)" }}>
+                  Daniel<br />Fells
                 </h2>
-                <p className="text-white/65 text-[17px] leading-[1.75] font-light max-w-[500px] mb-8">
-                  10 seasons in the NFL. 7 teams. 100+ games. Now he's using that platform to fight for every kid who needs fuel to compete.
+                <div className="font-oswald text-red text-[13px] tracking-[3px] uppercase font-medium mb-8">
+                  #86 • Tight End • 10 NFL Seasons • 2015 Ed Block Courage Award Winner
+                </div>
+
+                <div className="border-l-4 border-red pl-6 mb-8">
+                  <p className="text-white/80 text-[20px] leading-[1.6] italic font-light">
+                    "A father and son building something together — to serve other people's children. That's the story. That's the mission."
+                  </p>
+                </div>
+
+                <p className="text-white/60 text-[16px] leading-[1.85] font-light mb-5">
+                  Daniel Fells spent 10 seasons competing as a Tight End in the NFL — across seven teams, earning his place on every roster through relentless preparation, physical resilience, and an uncompromising standard. Today, he channels that decade of experience into something bigger than football.
                 </p>
+                <p className="text-white/60 text-[16px] leading-[1.85] font-light mb-8">
+                  As Lead Speaker and NFL Ambassador for Fuel Their Future, Daniel brings elite credibility and authentic community voice to every stage — connecting the performance world with the people who need it most.
+                </p>
+
                 <button
                   onClick={() => onTabChange("daniel")}
                   className="bg-red text-white px-9 py-4 font-oswald text-[14px] tracking-[2px] uppercase font-semibold border-2 border-red hover:bg-red-dark hover:border-red-dark transition-all cursor-pointer"
