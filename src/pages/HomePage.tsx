@@ -3,6 +3,9 @@ import MissionBar from "../components/MissionBar";
 import ftfLogo from "@/assets/ftf-logo.png";
 import lennonImg from "@/assets/lennon-action.jpg";
 import danielImg from "@/assets/daniel-portrait.jpg";
+import danielAction1 from "@/assets/daniel-action-1.jpg";
+import danielAction2 from "@/assets/daniel-action-2.jpg";
+import danielAction3 from "@/assets/daniel-action-3.jpg";
 
 interface HomePageProps {
   onTabChange: (tab: string) => void;
@@ -263,6 +266,45 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
               </div>
             </div>
           </FadeUp>
+
+          {/* Action photos + Stats bar */}
+          <FadeUp>
+            <div className="grid grid-cols-[420px_1fr] gap-16 mt-14 max-md:grid-cols-1">
+              {/* Action photos */}
+              <div className="grid grid-cols-3 gap-2">
+                <img src={danielAction1} alt="Daniel Fells NFL action" className="w-full h-[120px] object-cover" />
+                <img src={danielAction2} alt="Daniel Fells NFL action" className="w-full h-[120px] object-cover" />
+                <img src={danielAction3} alt="Daniel Fells NFL action" className="w-full h-[120px] object-cover" />
+              </div>
+              {/* Stats bar */}
+              <div className="grid grid-cols-3">
+                <div className="border-t-[3px] border-red bg-white/[0.05] p-6 text-center">
+                  <span className="font-bebas text-red text-[40px] leading-none block">10</span>
+                  <span className="font-oswald text-white/60 text-[11px] tracking-[2px] uppercase font-light mt-2 block">NFL Seasons</span>
+                </div>
+                <div className="border-t-[3px] border-red bg-white/[0.05] p-6 text-center">
+                  <span className="font-bebas text-red text-[40px] leading-none block">7</span>
+                  <span className="font-oswald text-white/60 text-[11px] tracking-[2px] uppercase font-light mt-2 block">NFL Teams</span>
+                </div>
+                <div className="border-t-[3px] border-gold bg-white/[0.05] p-6 text-center">
+                  <span className="font-bebas text-gold text-[40px] leading-none block">2015</span>
+                  <span className="font-oswald text-white/60 text-[11px] tracking-[2px] uppercase font-light mt-2 block">Ed Block Courage Award</span>
+                </div>
+              </div>
+            </div>
+          </FadeUp>
+
+          {/* CTA Button centered */}
+          <FadeUp>
+            <div className="flex justify-center mt-14">
+              <button
+                onClick={() => onTabChange("daniel")}
+                className="bg-red text-white px-12 py-5 font-oswald text-[14px] tracking-[3px] uppercase font-semibold border-2 border-red hover:bg-red-dark hover:border-red-dark transition-all cursor-pointer"
+              >
+                Read Daniel's Full Story →
+              </button>
+            </div>
+          </FadeUp>
         </div>
       </section>
 
@@ -271,7 +313,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
         <div className="absolute -left-5 top-1/2 -translate-y-1/2 font-bebas text-[280px] text-white/[0.05] tracking-[-10px] leading-none pointer-events-none">IMPACT</div>
         <div className="max-w-[1200px] mx-auto grid grid-cols-3 gap-[60px] relative z-[1] max-md:grid-cols-1">
           {[
-            { num: "1 in 5", label: "Children in the U.S. face food insecurity" },
+            { num: "13M", label: "Children in America struggle with food insecurity" },
             { num: "42M+", label: "Americans — including millions of student-athletes — go hungry" },
             { num: "100%", label: "Of elite athletes credit nutrition as a top performance factor" },
           ].map(stat => (
