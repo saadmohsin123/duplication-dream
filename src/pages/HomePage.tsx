@@ -263,6 +263,45 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
               </div>
             </div>
           </FadeUp>
+
+          {/* Action photos + Stats bar */}
+          <FadeUp>
+            <div className="grid grid-cols-[420px_1fr] gap-16 mt-14 max-md:grid-cols-1">
+              {/* Action photos */}
+              <div className="grid grid-cols-3 gap-2">
+                <img src={danielAction1} alt="Daniel Fells NFL action" className="w-full h-[120px] object-cover" />
+                <img src={danielAction2} alt="Daniel Fells NFL action" className="w-full h-[120px] object-cover" />
+                <img src={danielAction3} alt="Daniel Fells NFL action" className="w-full h-[120px] object-cover" />
+              </div>
+              {/* Stats bar */}
+              <div className="grid grid-cols-3">
+                <div className="border-t-[3px] border-red bg-white/[0.05] p-6 text-center">
+                  <span className="font-bebas text-red text-[40px] leading-none block">10</span>
+                  <span className="font-oswald text-white/60 text-[11px] tracking-[2px] uppercase font-light mt-2 block">NFL Seasons</span>
+                </div>
+                <div className="border-t-[3px] border-red bg-white/[0.05] p-6 text-center">
+                  <span className="font-bebas text-red text-[40px] leading-none block">7</span>
+                  <span className="font-oswald text-white/60 text-[11px] tracking-[2px] uppercase font-light mt-2 block">NFL Teams</span>
+                </div>
+                <div className="border-t-[3px] border-gold bg-white/[0.05] p-6 text-center">
+                  <span className="font-bebas text-gold text-[40px] leading-none block">2015</span>
+                  <span className="font-oswald text-white/60 text-[11px] tracking-[2px] uppercase font-light mt-2 block">Ed Block Courage Award</span>
+                </div>
+              </div>
+            </div>
+          </FadeUp>
+
+          {/* CTA Button centered */}
+          <FadeUp>
+            <div className="flex justify-center mt-14">
+              <button
+                onClick={() => onTabChange("daniel")}
+                className="bg-red text-white px-12 py-5 font-oswald text-[14px] tracking-[3px] uppercase font-semibold border-2 border-red hover:bg-red-dark hover:border-red-dark transition-all cursor-pointer"
+              >
+                Read Daniel's Full Story →
+              </button>
+            </div>
+          </FadeUp>
         </div>
       </section>
 
