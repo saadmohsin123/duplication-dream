@@ -287,7 +287,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
 
                 <div className="border-l-4 border-red pl-6 mb-7">
                   <p className="text-white text-[20px] leading-[1.6] italic font-light">
-                    "A father and son building something together — to serve other people's children. That's the story. That's the mission."
+                    "{daniel?.homepage_quote || "A father and son building something together — to serve other people's children. That's the story. That's the mission."}"
                   </p>
                 </div>
 
