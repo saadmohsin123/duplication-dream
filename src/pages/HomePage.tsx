@@ -257,12 +257,6 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
                   As Lead Speaker and NFL Ambassador for Fuel Their Future, Daniel brings elite credibility and authentic community voice to every stage — connecting the performance world with the people who need it most.
                 </p>
 
-                <button
-                  onClick={() => onTabChange("daniel")}
-                  className="bg-red text-white px-9 py-4 font-oswald text-[14px] tracking-[2px] uppercase font-semibold border-2 border-red hover:bg-red-dark hover:border-red-dark transition-all cursor-pointer"
-                >
-                  Meet Daniel →
-                </button>
               </div>
             </div>
           </FadeUp>
