@@ -315,7 +315,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
                   onClick={() => onTabChange("daniel")}
                   className="bg-red text-white px-9 py-4 font-oswald text-[14px] tracking-[2px] uppercase font-semibold border-2 border-red hover:bg-red-dark hover:border-red-dark transition-all cursor-pointer hover:-translate-y-[2px]"
                 >
-                  Read Daniel's Full Story →
+                  {daniel?.cta_text || "Read Daniel's Full Story"} →
                 </button>
               </div>
             </div>
