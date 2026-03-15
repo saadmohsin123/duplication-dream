@@ -8,6 +8,7 @@ import danielAction1 from "@/assets/daniel-action-1.jpg";
 import danielAction2 from "@/assets/daniel-action-2.jpg";
 import danielAction3 from "@/assets/daniel-action-3.jpg";
 import { useSiteContent } from "@/hooks/useSiteContent";
+import { useFounders } from "@/hooks/useFounders";
 import { supabase } from "@/lib/supabase";
 
 interface HomePageProps {
@@ -17,6 +18,9 @@ interface HomePageProps {
 
 const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
   const { content } = useSiteContent();
+  const { founders } = useFounders();
+  const lennon = founders.find(f => f.slug === 'lennon');
+  const daniel = founders.find(f => f.slug === 'daniel');
 
   // Contact form state
   const [formData, setFormData] = useState({ name: '', organization: '', email: '', phone: '', event_type: '', message: '' });
@@ -143,13 +147,13 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
                   <img src={lennonImg} alt="Lennon Fells" className="w-full h-full object-cover object-top transition-transform duration-400 hover:scale-[1.04]" style={{ filter: "grayscale(10%)" }} />
                 </div>
                 <div className="p-7 flex-1 flex flex-col">
-                  <div className="font-oswald text-red text-[10px] tracking-[3px] uppercase font-medium mb-[6px]">Founder & Visionary</div>
-                  <div className="font-bebas text-[34px] text-navy tracking-[1px] leading-none mb-3">Lennon Fells</div>
+                  <div className="font-oswald text-red text-[10px] tracking-[3px] uppercase font-medium mb-[6px]">{lennon?.homepage_role_label || 'Founder & Visionary'}</div>
+                  <div className="font-bebas text-[34px] text-navy tracking-[1px] leading-none mb-3">{lennon?.name || 'Lennon Fells'}</div>
                   <p className="text-[14px] leading-[1.7] text-[#555] font-light flex-1">
-                    At 14, Lennon Fells is building a movement that connects athletic performance with food equity — proving that student-athletes can be the most powerful force for community change.
+                    {lennon?.subtitle || 'At 14, Lennon Fells is building a movement that connects athletic performance with food equity — proving that student-athletes can be the most powerful force for community change.'}
                   </p>
                   <span className="inline-flex items-center gap-2 font-oswald text-red text-[12px] tracking-[2px] uppercase font-semibold mt-5 hover:gap-[14px] transition-all">
-                    Read His Story →
+                    {lennon?.cta_text || 'Read His Story'} →
                   </span>
                 </div>
               </div>
@@ -160,7 +164,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
               <div className="inline-flex items-center gap-5">
                 <div className="w-[60px] h-px bg-red" />
                 <p className="font-serif text-[18px] text-[#666] italic font-light max-w-[520px] leading-[1.7]">
-                  "At 14, he's already proving that the next generation of leaders doesn't wait to be asked."
+                  "{lennon?.homepage_quote || "At 14, he's already proving that the next generation of leaders doesn't wait to be asked."}"
                 </p>
                 <div className="w-[60px] h-px bg-red" />
               </div>
@@ -275,24 +279,21 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
                   Our Lead Speaker <span className="block w-10 h-[2px] bg-white/20" />
                 </div>
                 <div className="font-bebas text-white leading-[0.9] tracking-[1px] mb-2" style={{ fontSize: "clamp(52px, 6vw, 80px)" }}>
-                  Daniel<br />Fells
+                  {(daniel?.name || 'Daniel Fells').split(' ')[0]}<br />{(daniel?.name || 'Daniel Fells').split(' ').slice(1).join(' ')}
                 </div>
                 <div className="font-oswald text-red text-[13px] tracking-[3px] uppercase font-medium mb-7">
-                  #86 • Tight End • 10 NFL Seasons • 2015 Ed Block Courage Award Winner
+                  {daniel?.homepage_role_label || '#86 • Tight End • 10 NFL Seasons • 2015 Ed Block Courage Award Winner'}
                 </div>
 
                 <div className="border-l-4 border-red pl-6 mb-7">
                   <p className="text-white text-[20px] leading-[1.6] italic font-light">
-                    "A father and son building something together — to serve other people's children. That's the story. That's the mission."
+                    "{daniel?.homepage_quote || "A father and son building something together — to serve other people's children. That's the story. That's the mission."}"
                   </p>
                 </div>
 
-                <p className="text-white/[0.68] text-[16px] leading-[1.9] font-light mb-4">
-                  Daniel Fells spent 10 seasons competing as a Tight End in the NFL — across seven teams, earning his place on every roster through relentless preparation, physical resilience, and an uncompromising standard. Today, he channels that decade of experience into something bigger than football.
-                </p>
-                <p className="text-white/[0.68] text-[16px] leading-[1.9] font-light mb-8">
-                  As Lead Speaker and NFL Ambassador for Fuel Their Future, Daniel brings elite credibility and authentic community voice to every stage — connecting the performance world with the people who need it most.
-                </p>
+                {(daniel?.homepage_description || 'Daniel Fells spent 10 seasons competing as a Tight End in the NFL — across seven teams, earning his place on every roster through relentless preparation, physical resilience, and an uncompromising standard. Today, he channels that decade of experience into something bigger than football.\n\nAs Lead Speaker and NFL Ambassador for Fuel Their Future, Daniel brings elite credibility and authentic community voice to every stage — connecting the performance world with the people who need it most.').split('\n\n').map((p, i) => (
+                  <p key={i} className="text-white/[0.68] text-[16px] leading-[1.9] font-light mb-4">{p}</p>
+                ))}
 
                 {/* Stats bar */}
                 <div className="grid grid-cols-4 gap-[2px] mb-8">
@@ -314,7 +315,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
                   onClick={() => onTabChange("daniel")}
                   className="bg-red text-white px-9 py-4 font-oswald text-[14px] tracking-[2px] uppercase font-semibold border-2 border-red hover:bg-red-dark hover:border-red-dark transition-all cursor-pointer hover:-translate-y-[2px]"
                 >
-                  Read Daniel's Full Story →
+                  {daniel?.cta_text || "Read Daniel's Full Story"} →
                 </button>
               </div>
             </div>
