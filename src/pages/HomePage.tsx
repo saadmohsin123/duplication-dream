@@ -3,6 +3,9 @@ import MissionBar from "../components/MissionBar";
 import ftfLogo from "@/assets/ftf-logo.png";
 import lennonImg from "@/assets/lennon-action.jpg";
 import danielImg from "@/assets/daniel-portrait.jpg";
+import danielAction1 from "@/assets/daniel-action-1.jpg";
+import danielAction2 from "@/assets/daniel-action-2.jpg";
+import danielAction3 from "@/assets/daniel-action-3.jpg";
 
 interface HomePageProps {
   onTabChange: (tab: string) => void;
