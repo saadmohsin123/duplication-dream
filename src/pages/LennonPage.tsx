@@ -47,7 +47,7 @@ const LennonPage = ({ onTabChange, onScrollTo }: LennonPageProps) => {
         </div>
       </div>
 
-      <MissionBar />
+      <MissionBar reversed />
 
       {/* BODY */}
       <section className="bg-cream py-20 pb-[100px]">
