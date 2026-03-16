@@ -16,12 +16,13 @@ const LennonPage = ({ onTabChange, onScrollTo }: LennonPageProps) => {
   const role = founder?.homepage_role_label || 'Founder & CEO, Fuel Their Future';
   const tagline = founder?.page_tagline || 'Fuel Their Future — Our Founder';
   const heroText = founder?.page_hero_text || "At 14, he's already changing communities. The young visionary who saw a gap no one was closing — and decided to close it himself.";
-  const stats = founder?.stats || [
+  const allStats = founder?.stats || [
     { num: "14", label: "Years Old" },
     { num: "2", label: "Varsity Sports" },
     { num: "20%", label: "Profits Donated" },
     { num: "500+", label: "Volunteer Hours" },
   ];
+  const stats = allStats.filter(s => !s.label.toLowerCase().includes('sport'));
   const storyBlocks = founder?.story_blocks || [];
   const quotes = founder?.quotes || [];
   const firstName = name.split(' ')[0];
@@ -47,7 +48,7 @@ const LennonPage = ({ onTabChange, onScrollTo }: LennonPageProps) => {
         </div>
       </div>
 
-      <MissionBar />
+      <MissionBar reversed />
 
       {/* BODY */}
       <section className="bg-cream py-20 pb-[100px]">

@@ -149,7 +149,7 @@ const DanielPage = ({ onTabChange, onScrollTo }: DanielPageProps) => {
                 </div>
                 <button onClick={() => content?.calendly_link ? window.open(content.calendly_link, '_blank') : (onTabChange("home"), setTimeout(() => onScrollTo("contact"), 150))}
                   className="bg-gold text-navy px-9 py-4 font-oswald text-[14px] tracking-[2px] uppercase font-semibold border-2 border-gold hover:bg-gold/90 transition-all cursor-pointer whitespace-nowrap">
-                  Check Availability
+                  Let's Talk Impact
                 </button>
               </div>
             </FadeUp>
