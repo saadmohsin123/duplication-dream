@@ -467,6 +467,34 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
               </div>
             </div>
           </FadeUp>
+          <FadeUp>
+            <div className="mt-[60px] p-[44px_48px] bg-red/10 border border-red/25 flex justify-between items-center gap-8 flex-wrap max-md:p-6 max-md:flex-col">
+              <div>
+                <h3 className="font-bebas text-white text-[30px] tracking-[1px] mb-[6px]">
+                  Ready to bring Daniel Fells to your next event?
+                </h3>
+                <p className="text-white/55 text-[15px] font-light mt-[6px]">
+                  We work with school districts, sports organizations, corporations, and community events nationwide.
+                </p>
+              </div>
+              <div className="flex gap-3 flex-wrap">
+                {content?.calendly_link && (
+                  <button
+                    onClick={() => window.open(content.calendly_link, "_blank")}
+                    className="bg-gold text-navy px-9 py-4 font-oswald text-[14px] tracking-[2px] uppercase font-semibold border-2 border-gold hover:bg-gold/90 transition-all cursor-pointer whitespace-nowrap"
+                  >
+                    Let's Talk Impact
+                  </button>
+                )}
+                <button
+                  onClick={() => onScrollTo("contact")}
+                  className="bg-white text-navy px-9 py-4 font-oswald text-[14px] tracking-[2px] uppercase font-semibold border-2 border-white hover:bg-red hover:border-red hover:text-white transition-all cursor-pointer whitespace-nowrap"
+                >
+                  Send Us A Message
+                </button>
+              </div>
+            </div>
+          </FadeUp>
         </div>
       </section>
 
