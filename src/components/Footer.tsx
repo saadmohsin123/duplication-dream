@@ -1,9 +1,15 @@
+import { useSiteContent } from "@/hooks/useSiteContent";
+
 interface FooterProps {
   onTabChange: (tab: string) => void;
   onScrollTo: (id: string) => void;
 }
 
-const Footer = ({ onTabChange, onScrollTo }: FooterProps) => (
+const Footer = ({ onTabChange, onScrollTo }: FooterProps) => {
+  const { content } = useSiteContent();
+  const showTM = content?.show_trademarks ?? false;
+
+  return (
   <footer className="bg-navy-dark border-t border-white/[0.07] p-[60px] max-md:p-6">
     <div className="max-w-[1200px] mx-auto grid grid-cols-[2fr_1fr_1fr] gap-[60px] mb-11 max-md:grid-cols-1 max-md:gap-8">
       <div>
