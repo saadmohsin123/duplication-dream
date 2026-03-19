@@ -60,8 +60,6 @@ const Footer = ({ onTabChange, onScrollTo }: FooterProps) => {
       <div className="font-oswald text-white/20 text-[11px] tracking-[2px] italic">Every athlete needs fuel. Every kid deserves it.</div>
     </div>
   </footer>
-);
-
   );
 };
 
