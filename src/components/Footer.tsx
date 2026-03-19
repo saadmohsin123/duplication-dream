@@ -56,7 +56,7 @@ const Footer = ({ onTabChange, onScrollTo }: FooterProps) => {
       </div>
     </div>
     <div className="max-w-[1200px] mx-auto pt-[22px] border-t border-white/[0.07] flex justify-between items-center max-md:flex-col max-md:gap-[10px] max-md:text-center">
-      <div className="font-oswald text-white/[0.28] text-[12px]">© 2026 Fuel Their Future LLC. All rights reserved.</div>
+      <div className="font-oswald text-white/[0.28] text-[12px]">{showTM ? "©" : ""} 2026 Fuel Their Future LLC. All rights reserved.</div>
       <div className="font-oswald text-white/20 text-[11px] tracking-[2px] italic">Every athlete needs fuel. Every kid deserves it.</div>
     </div>
   </footer>
