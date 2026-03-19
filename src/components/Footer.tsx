@@ -24,7 +24,7 @@ const Footer = ({ onTabChange, onScrollTo }: FooterProps) => {
         <ul className="list-none flex flex-col gap-[10px]">
           {[
             { label: "Home", action: () => onTabChange("home") },
-            { label: "Our Founder — Lennon Fells", action: () => onTabChange("lennon") },
+            { label: "Founder - Lennon Fells", action: () => onTabChange("lennon") },
             { label: "Daniel Fells", action: () => onTabChange("daniel") },
             { label: "Speaking Engagements", action: () => { onTabChange("home"); setTimeout(() => onScrollTo("speaking"), 150); } },
             { label: "Partnerships", action: () => { onTabChange("home"); setTimeout(() => onScrollTo("partners"), 150); } },
