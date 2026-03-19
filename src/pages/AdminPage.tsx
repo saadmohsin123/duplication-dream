@@ -140,6 +140,18 @@ const AdminPage = () => {
             {inputField('Contact Email', siteForm.contact_email || '', v => setSiteForm({ ...siteForm, contact_email: v }))}
             {inputField('Phone Number', siteForm.phone_number || '', v => setSiteForm({ ...siteForm, phone_number: v }))}
             {inputField('Calendly Link', siteForm.calendly_link || '', v => setSiteForm({ ...siteForm, calendly_link: v }))}
+            <div className="flex items-center gap-3 mb-6 mt-2">
+              <input
+                type="checkbox"
+                id="show_trademarks"
+                checked={siteForm.show_trademarks ?? false}
+                onChange={e => setSiteForm({ ...siteForm, show_trademarks: e.target.checked })}
+                className="w-5 h-5 accent-red cursor-pointer"
+              />
+              <label htmlFor="show_trademarks" className="font-oswald text-white/70 text-[14px] tracking-[1px] cursor-pointer">
+                Show trademark (™) and copyright (©) symbols on the site
+              </label>
+            </div>
             <button onClick={saveSiteContent} disabled={saving}
               className="bg-red text-white px-9 py-4 font-oswald text-[14px] tracking-[2px] uppercase font-semibold border-none cursor-pointer hover:bg-red-dark transition-colors disabled:opacity-50 mt-2">
               {saving ? 'Saving...' : 'Save Changes'}
