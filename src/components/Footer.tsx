@@ -62,4 +62,7 @@ const Footer = ({ onTabChange, onScrollTo }: FooterProps) => {
   </footer>
 );
 
+  );
+};
+
 export default Footer;

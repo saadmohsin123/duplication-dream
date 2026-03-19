@@ -109,7 +109,7 @@ const Navbar = ({ activeTab, onTabChange, onScrollTo }: NavbarProps) => {
       >
         <ul className="list-none p-6 flex flex-col gap-1">
           {mobileNavBtn("Home", () => onTabChange("home"), activeTab === "home")}
-          {mobileNavBtn("Our Founder", () => onTabChange("lennon"), activeTab === "lennon")}
+          {mobileNavBtn("Founder - Lennon Fells", () => onTabChange("lennon"), activeTab === "lennon")}
           {mobileNavBtn("Daniel Fells", () => onTabChange("daniel"), activeTab === "daniel")}
           {mobileNavBtn("Speaking", () => { onTabChange("home"); setTimeout(() => onScrollTo("speaking"), 150); })}
           {mobileNavBtn("Partners", () => { onTabChange("home"); setTimeout(() => onScrollTo("partners"), 150); })}
