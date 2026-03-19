@@ -70,7 +70,7 @@ const Navbar = ({ activeTab, onTabChange, onScrollTo }: NavbarProps) => {
         {/* Desktop nav */}
         <ul className="flex items-center gap-[6px] list-none max-lg:hidden">
           {navBtn("Home", "home", activeTab === "home", () => onTabChange("home"))}
-          {navBtn("Our Founder", "lennon", activeTab === "lennon", () => onTabChange("lennon"))}
+          {navBtn("Founder - Lennon Fells", "lennon", activeTab === "lennon", () => onTabChange("lennon"))}
           {navBtn("Daniel Fells", "daniel", activeTab === "daniel", () => onTabChange("daniel"))}
           {navBtn("Speaking", "home", false, () => { onTabChange("home"); setTimeout(() => onScrollTo("speaking"), 150); })}
           {navBtn("Partners", "home", false, () => { onTabChange("home"); setTimeout(() => onScrollTo("partners"), 150); })}
@@ -109,7 +109,7 @@ const Navbar = ({ activeTab, onTabChange, onScrollTo }: NavbarProps) => {
       >
         <ul className="list-none p-6 flex flex-col gap-1">
           {mobileNavBtn("Home", () => onTabChange("home"), activeTab === "home")}
-          {mobileNavBtn("Our Founder", () => onTabChange("lennon"), activeTab === "lennon")}
+          {mobileNavBtn("Founder - Lennon Fells", () => onTabChange("lennon"), activeTab === "lennon")}
           {mobileNavBtn("Daniel Fells", () => onTabChange("daniel"), activeTab === "daniel")}
           {mobileNavBtn("Speaking", () => { onTabChange("home"); setTimeout(() => onScrollTo("speaking"), 150); })}
           {mobileNavBtn("Partners", () => { onTabChange("home"); setTimeout(() => onScrollTo("partners"), 150); })}

@@ -1,9 +1,15 @@
+import { useSiteContent } from "@/hooks/useSiteContent";
+
 interface FooterProps {
   onTabChange: (tab: string) => void;
   onScrollTo: (id: string) => void;
 }
 
-const Footer = ({ onTabChange, onScrollTo }: FooterProps) => (
+const Footer = ({ onTabChange, onScrollTo }: FooterProps) => {
+  const { content } = useSiteContent();
+  const showTM = content?.show_trademarks ?? false;
+
+  return (
   <footer className="bg-navy-dark border-t border-white/[0.07] p-[60px] max-md:p-6">
     <div className="max-w-[1200px] mx-auto grid grid-cols-[2fr_1fr_1fr] gap-[60px] mb-11 max-md:grid-cols-1 max-md:gap-8">
       <div>
@@ -18,7 +24,7 @@ const Footer = ({ onTabChange, onScrollTo }: FooterProps) => (
         <ul className="list-none flex flex-col gap-[10px]">
           {[
             { label: "Home", action: () => onTabChange("home") },
-            { label: "Our Founder — Lennon Fells", action: () => onTabChange("lennon") },
+            { label: "Founder - Lennon Fells", action: () => onTabChange("lennon") },
             { label: "Daniel Fells", action: () => onTabChange("daniel") },
             { label: "Speaking Engagements", action: () => { onTabChange("home"); setTimeout(() => onScrollTo("speaking"), 150); } },
             { label: "Partnerships", action: () => { onTabChange("home"); setTimeout(() => onScrollTo("partners"), 150); } },
@@ -50,10 +56,11 @@ const Footer = ({ onTabChange, onScrollTo }: FooterProps) => (
       </div>
     </div>
     <div className="max-w-[1200px] mx-auto pt-[22px] border-t border-white/[0.07] flex justify-between items-center max-md:flex-col max-md:gap-[10px] max-md:text-center">
-      <div className="font-oswald text-white/[0.28] text-[12px]">© 2026 Fuel Their Future LLC. All rights reserved.</div>
+      <div className="font-oswald text-white/[0.28] text-[12px]">{showTM ? "©" : ""} 2026 Fuel Their Future LLC. All rights reserved.</div>
       <div className="font-oswald text-white/20 text-[11px] tracking-[2px] italic">Every athlete needs fuel. Every kid deserves it.</div>
     </div>
   </footer>
-);
+  );
+};
 
 export default Footer;

@@ -133,7 +133,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
               className="font-bebas text-white leading-none tracking-[1px] mb-5"
               style={{ fontSize: "clamp(40px, 5vw, 62px)" }}
             >
-              The FTF Framework™
+              The FTF Framework{content?.show_trademarks ? "™" : ""}
             </h2>
             <p className="text-white/60 text-[17px] leading-[1.75] font-light max-w-[600px]">
               {content?.framework_text ||

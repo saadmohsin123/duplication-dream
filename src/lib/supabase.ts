@@ -14,6 +14,7 @@ export type SiteContent = {
   contact_email: string;
   phone_number: string;
   calendly_link: string;
+  show_trademarks: boolean;
   updated_at: string;
 };
 
