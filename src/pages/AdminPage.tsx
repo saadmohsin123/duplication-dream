@@ -37,7 +37,8 @@ const AdminPage = () => {
       hero_title: siteForm.hero_title, hero_subtitle: siteForm.hero_subtitle,
       framework_text: siteForm.framework_text, speaking_section_text: siteForm.speaking_section_text,
       contact_email: siteForm.contact_email, phone_number: siteForm.phone_number,
-      calendly_link: siteForm.calendly_link, updated_at: new Date().toISOString(),
+      calendly_link: siteForm.calendly_link, show_trademarks: siteForm.show_trademarks ?? false,
+      updated_at: new Date().toISOString(),
     }).eq('id', siteForm.id!);
     setSaving(false);
     showMessage(error ? 'Error saving!' : 'Saved successfully!');
