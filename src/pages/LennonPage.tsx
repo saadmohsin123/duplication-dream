@@ -78,7 +78,10 @@ const LennonPage = ({ onTabChange, onScrollTo }: LennonPageProps) => {
 
             {storyBlocks.map((block, i) => (
               <div key={i}>
-                {/* Insert quote after first story block */}
+                <StoryBlock label={block.label} title={block.title}>
+                  {block.paragraphs.map((p, j) => <p key={j}>{p}</p>)}
+                </StoryBlock>
+                {/* Insert quote after second story block */}
                 {i === 1 && quotes[0] && (
                   <FadeUp>
                     <div className="bg-navy p-[32px_36px] my-8 relative overflow-hidden">
@@ -89,9 +92,6 @@ const LennonPage = ({ onTabChange, onScrollTo }: LennonPageProps) => {
                     </div>
                   </FadeUp>
                 )}
-                <StoryBlock label={block.label} title={block.title}>
-                  {block.paragraphs.map((p, j) => <p key={j}>{p}</p>)}
-                </StoryBlock>
               </div>
             ))}
 
