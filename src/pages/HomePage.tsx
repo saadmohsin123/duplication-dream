@@ -101,7 +101,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col justify-start items-center max-md:hidden -mt-4">
+          <div className="flex flex-col items-center max-md:hidden pt-12">
             <div className="w-[300px] h-[300px] rounded-full border border-white/[0.08] flex items-center justify-center relative animate-spin-slow">
               <div className="absolute -inset-6 rounded-full border border-red/20 animate-spin-ring" />
               <img
