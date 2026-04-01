@@ -101,16 +101,16 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col justify-center items-center max-md:hidden">
-            <div className="w-[340px] h-[340px] rounded-full border border-white/[0.08] flex items-center justify-center relative animate-spin-slow">
+          <div className="flex flex-col justify-center items-center max-md:hidden -mt-8">
+            <div className="w-[300px] h-[300px] rounded-full border border-white/[0.08] flex items-center justify-center relative animate-spin-slow">
               <div className="absolute -inset-6 rounded-full border border-red/20 animate-spin-ring" />
               <img
                 src={ftfLogo}
                 alt="FTF Logo"
-                className="w-[270px] h-[270px] object-contain animate-spin-slow-reverse"
+                className="w-[240px] h-[240px] object-contain animate-spin-slow-reverse"
               />
             </div>
-            <p className="text-white/50 text-[13px] leading-[1.65] font-light italic text-center max-w-[400px] mt-8">
+            <p className="text-white/50 text-[13px] leading-[1.65] font-light italic text-center max-w-[400px] mt-6">
               Fuel Their Future LLC is a sports performance organization — channeling athletic excellence through speaking engagements, sports camps and nutrition delivery to fuel every child's potential.
             </p>
           </div>
