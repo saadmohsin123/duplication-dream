@@ -70,7 +70,7 @@ const HomePage = ({ onTabChange, onScrollTo }: HomePageProps) => {
           style={{ background: "radial-gradient(circle, rgba(200,16,46,0.1) 0%, transparent 70%)" }}
         />
 
-        <div className="relative z-[2] max-w-[1200px] mx-auto px-[60px] py-20 grid grid-cols-2 gap-[60px] items-center w-full max-md:grid-cols-1 max-md:px-6 max-md:text-center">
+        <div className="relative z-[2] max-w-[1200px] mx-auto px-[60px] py-20 grid grid-cols-2 gap-[60px] items-start w-full max-md:grid-cols-1 max-md:px-6 max-md:text-center">
           <div>
             <div className="font-oswald text-gold text-[12px] tracking-[4px] uppercase font-normal mb-5 flex items-center gap-3 max-md:justify-center">
               <span className="block w-10 h-[2px] bg-red" />
