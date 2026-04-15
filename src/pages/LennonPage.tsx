@@ -64,7 +64,7 @@ const LennonPage = ({ onTabChange, onScrollTo }: LennonPageProps) => {
               <div className="font-oswald text-gold text-[10px] tracking-[3px] uppercase font-normal mb-[14px]">Quick Facts</div>
               {stats.map(stat => (
                 <div key={stat.label} className="flex justify-between items-center py-[10px] border-b border-white/[0.08] last:border-none">
-                  <span className="font-bebas text-red text-[28px]">{stat.num}</span>
+                  <span className={`text-red text-[28px] ${stat.num === '∞' ? 'font-sans font-bold' : 'font-bebas'}`}>{stat.num}</span>
                   <span className="font-oswald text-white/60 text-[11px] tracking-[1px] uppercase font-light text-right max-w-[160px] leading-[1.4]">{stat.label}</span>
                 </div>
               ))}
